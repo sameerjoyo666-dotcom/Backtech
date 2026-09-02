@@ -88,9 +88,9 @@
 }
 
 /* =========================================================
-   LIGHT THEME TRANSFORMATION SYSTEM
-   Transforms the entire website into a crisp, modern,
-   high-contrast white & light gray luxury aesthetic.
+   LIGHT THEME SYSTEM (Comprehensive Site-Wide Inversion)
+   Guarantees pure white & crisp light gray backgrounds with
+   deep charcoal text, eliminating all dark-on-dark issues.
    ========================================================= */
 
 html.light,
@@ -99,7 +99,17 @@ html.light body {
   color: #18181B !important;
 }
 
-/* Page sections & canvas */
+/* 1. All dark solid backgrounds & dark opacity variations -> White or Off-White */
+html.light [class*="bg-\[\#0"],
+html.light [class*="bg-\[\#1"],
+html.light [class*="bg-\[\#2"],
+html.light [class*="bg-zinc-8"],
+html.light [class*="bg-zinc-9"],
+html.light [class*="bg-zinc-950"] {
+  background-color: #FFFFFF !important;
+}
+
+/* Page canvas sections -> #F8F9FA */
 html.light section,
 html.light main,
 html.light .bg-\[\#08080A\],
@@ -113,47 +123,79 @@ html.light .bg-\[\#000000\] {
   background-color: #F8F9FA !important;
 }
 
-/* Cards & containers turn pure white with clean elevation */
-html.light .bg-\[\#121214\],
-html.light .bg-\[\#121215\],
-html.light .bg-\[\#121216\],
-html.light .bg-\[\#131316\],
-html.light .bg-\[\#141416\],
-html.light .bg-\[\#141418\],
-html.light .bg-\[\#161619\],
-html.light .bg-\[\#18181D\],
-html.light .bg-\[\#1A1A20\],
-html.light .bg-\[\#1C1614\],
-html.light .bg-\[\#1C1C22\],
-html.light .bg-zinc-900,
-html.light .bg-zinc-900\/60,
-html.light .bg-zinc-900\/80,
-html.light .bg-zinc-950 {
+/* 2. Kill dark gradients on cards (like MarketRate and Mission cards) */
+html.light [class*="from-\[\#1"],
+html.light [class*="from-\[\#0"],
+html.light [class*="via-\[\#1"],
+html.light [class*="to-\[\#0"],
+html.light [class*="to-\[\#1"] {
+  background-image: none !important;
   background-color: #FFFFFF !important;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important;
 }
 
-/* Elevated hover states */
-html.light .hover\:bg-\[\#1E1E24\]:hover,
-html.light .hover\:bg-\[\#1A1A22\]:hover,
-html.light .hover\:bg-\[\#161619\]:hover,
-html.light .hover\:bg-zinc-800:hover {
-  background-color: #F4F4F5 !important;
+/* Dark gradient overlay masks inside cards -> hide them in light mode */
+html.light [class*="bg-gradient-to-t"][class*="from-\[\#121215\]"],
+html.light [class*="bg-gradient-to-b"][class*="from-transparent"][class*="to-bg-inverse"],
+html.light [class*="bg-grain-texture"] {
+  background-image: none !important;
 }
 
-/* Header & Navigation in light mode */
-html.light header {
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  border-bottom: 1px solid #E4E4E7 !important;
-  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.04) !important;
+/* 3. Cards & Containers elevation & borders */
+html.light [class*="bg-\[\#1212"],
+html.light [class*="bg-\[\#1313"],
+html.light [class*="bg-\[\#1414"],
+html.light [class*="bg-\[\#1616"],
+html.light [class*="bg-\[\#1818"],
+html.light [class*="bg-\[\#1A1A"],
+html.light [class*="bg-\[\#1C16"],
+html.light [class*="bg-\[\#1C1C"],
+html.light [class*="bg-\[\#0C0C"],
+html.light [class*="bg-zinc-9"] {
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.05) !important;
 }
 
-/* Mobile drawer in light mode */
-html.light header > div.fixed {
-  background-color: rgba(255, 255, 255, 0.98) !important;
+/* 4. Inputs, selects, and options in Hero Form & Booking Modal */
+html.light [class*="bg-\[\#2121"],
+html.light [class*="bg-\[\#2828"],
+html.light [class*="bg-\[\#2A2A"],
+html.light select,
+html.light input:not([type="range"]):not([type="checkbox"]) {
+  background-color: #F4F4F6 !important;
+  border-color: #D4D4D8 !important;
+  color: #09090B !important;
 }
 
-/* Typography in light mode */
+html.light input::placeholder {
+  color: #A1A1AA !important;
+}
+
+/* Selected state in Hero Form */
+html.light [class*="border-\[\#F84B1D\]"][class*="bg-\[\#2A2A30\]"] {
+  background-color: #FFF5F2 !important;
+  border-color: #F84B1D !important;
+  color: #09090B !important;
+}
+
+/* 5. Comparison Table specific light mode styling */
+html.light .bg-\[\#16161A\],
+html.light [class*="bg-\[\#16161A\]"] {
+  background-color: #F4F4F6 !important;
+  border-color: #E4E4E7 !important;
+}
+
+html.light [class*="bg-\[\#F84B1D\]\/10"] {
+  background-color: #FFF3F0 !important;
+  border-color: rgba(248, 75, 29, 0.3) !important;
+}
+
+html.light [class*="bg-\[\#F84B1D\]\/10"] span,
+html.light [class*="bg-\[\#F84B1D\]\/10"] div {
+  color: #18181B !important;
+}
+
+/* 6. Typography across the site */
 html.light h1,
 html.light h2,
 html.light h3,
@@ -164,7 +206,6 @@ html.light .text-white {
   color: #09090B !important;
 }
 
-/* Subheadings & body text */
 html.light .text-zinc-200,
 html.light .text-zinc-300,
 html.light .text-zinc-400 {
@@ -175,33 +216,47 @@ html.light .text-zinc-500 {
   color: #71717A !important;
 }
 
-/* Brand orange accents stay crisp */
+/* 7. ALL BRAND ORANGE BUTTONS, BADGES, AND HIGHLIGHTS */
 html.light .text-\[\#F84B1D\] {
   color: #F84B1D !important;
 }
 
-/* All Orange Badges & CTA Buttons maintain crisp white text on orange */
-html.light .bg-\[\#F84B1D\] {
+html.light .bg-\[\#F84B1D\],
+html.light [class*="bg-\[\#F84B1D\]"]:not([class*="bg-\[\#F84B1D\]\/10"]):not([class*="bg-\[\#F84B1D\]\/15"]):not([class*="bg-\[\#F84B1D\]\/20"]) {
   background-color: #F84B1D !important;
   color: #FFFFFF !important;
 }
 
-html.light .bg-\[\#F84B1D\] * {
+html.light .bg-\[\#F84B1D\] *,
+html.light [class*="bg-\[\#F84B1D\]"]:not([class*="bg-\[\#F84B1D\]\/10"]):not([class*="bg-\[\#F84B1D\]\/15"]):not([class*="bg-\[\#F84B1D\]\/20"]) * {
   color: #FFFFFF !important;
 }
 
-/* Borders in light mode */
-html.light .border-zinc-800,
-html.light .border-zinc-800\/80,
-html.light .border-zinc-800\/90,
-html.light .border-zinc-700,
-html.light .border-zinc-700\/60,
-html.light .border-zinc-700\/80,
-html.light .border-white\/10 {
+/* Rate selector buttons in MarketRate calculator */
+html.light [class*="bg-\[\#18181D\]"] button,
+html.light [class*="bg-\[\#0C0C0E\]"] button:not(.bg-\[\#F84B1D\]) {
+  background-color: #FFFFFF !important;
+  color: #52525B !important;
   border-color: #E4E4E7 !important;
 }
 
-/* Footer in light mode */
+/* 8. Floating badges & UI tags (e.g. 50+ Founders Rescued on About Page) */
+html.light .shadow-2xl,
+html.light .shadow-xl {
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* 9. Header & Footer in light mode */
+html.light header {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  border-bottom: 1px solid #E4E4E7 !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light header > div.fixed {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+}
+
 html.light footer {
   background-color: #F4F4F6 !important;
   border-top: 1px solid #E4E4E7 !important;
@@ -222,10 +277,18 @@ html.light footer a:hover * {
   color: #F84B1D !important;
 }
 
-/* Modals in light mode */
-html.light .booking-modal-card {
-  background-color: #FFFFFF !important;
+/* 10. Borders everywhere */
+html.light .border-zinc-800,
+html.light .border-zinc-700,
+html.light [class*="border-zinc-800"],
+html.light [class*="border-zinc-700"],
+html.light [class*="border-white\/10"] {
   border-color: #E4E4E7 !important;
+}
+
+/* 11. Modal backdrop in light mode */
+html.light .bg-black\/85 {
+  background-color: rgba(15, 23, 42, 0.5) !important;
 }
 
 /* Scrollbars in light mode */
@@ -239,4 +302,72 @@ html.light ::-webkit-scrollbar-thumb:hover {
   background: #A1A1AA;
 }
 
+/* 12. Component Specific Light Mode Overrides */
+html.light .stat-float-badge {
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.08) !important;
+}
+html.light .stat-float-badge .font-extrabold {
+  color: #09090B !important;
+}
+html.light .stat-float-badge .uppercase {
+  color: #71717A !important;
+}
 
+html.light .dark-gradient-overlay {
+  display: none !important;
+}
+
+html.light .mission-card {
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+}
+html.light .mission-card h3 {
+  color: #09090B !important;
+}
+
+html.light .hero-form-card {
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+  box-shadow: 0 10px 40px -6px rgba(0, 0, 0, 0.08) !important;
+}
+html.light .hero-role-btn {
+  background-color: #F8F9FA !important;
+  border-color: #E4E4E7 !important;
+  color: #18181B !important;
+}
+html.light .hero-role-btn:hover {
+  background-color: #F1F2F4 !important;
+  border-color: #D4D4D8 !important;
+}
+html.light .hero-role-btn-selected {
+  background-color: #FFF5F2 !important;
+  border-color: #F84B1D !important;
+  color: #18181B !important;
+}
+
+html.light .comparison-table-card {
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+}
+html.light .comparison-table-header,
+html.light .comparison-table-footer {
+  background-color: #F8F9FA !important;
+  border-color: #E4E4E7 !important;
+}
+
+html.light .market-rate-card {
+  background-image: none !important;
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+}
+html.light .market-rate-roi {
+  background-color: #F8F9FA !important;
+  border-color: #E4E4E7 !important;
+}
+html.light .rate-tier-btn {
+  background-color: #FFFFFF !important;
+  border-color: #E4E4E7 !important;
+  color: #52525B !important;
+}

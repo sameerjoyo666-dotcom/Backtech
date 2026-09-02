@@ -109,10 +109,10 @@ export default function ComparisonSection({ onOpenBooking }) {
 
         {/* Desktop View: Full Side-by-Side Matrix (>= 768px) */}
         <div className="hidden md:block overflow-x-auto">
-          <div className="min-w-[760px] rounded-3xl border border-zinc-800 bg-[#121215]/95 overflow-hidden shadow-2xl backdrop-blur-xl">
+          <div className="min-w-[760px] rounded-3xl border border-zinc-800 bg-[#121215]/95 overflow-hidden shadow-2xl backdrop-blur-xl comparison-table-card">
             
             {/* Table Header */}
-            <div className="grid grid-cols-12 bg-[#16161A] border-b border-zinc-800 py-5 px-6 items-center">
+            <div className="grid grid-cols-12 bg-[#16161A] border-b border-zinc-800 py-5 px-6 items-center comparison-table-header">
               <div className="col-span-4 font-heading font-bold text-sm tracking-wider uppercase text-zinc-400">
                 Features
               </div>
@@ -149,7 +149,7 @@ export default function ComparisonSection({ onOpenBooking }) {
             </div>
 
             {/* Table Footer */}
-            <div className="p-6 bg-[#16161A]/80 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="p-6 bg-[#16161A]/80 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 comparison-table-footer">
               <span className="text-xs text-zinc-400">
                 * business days. Free rematch within 14 business days.
               </span>

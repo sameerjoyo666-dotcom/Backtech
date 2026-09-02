@@ -20,7 +20,7 @@ export default function MarketRateSection({ onOpenBooking }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
         
         {/* Section Header Banner */}
-        <div className="bg-gradient-to-br from-[#16161B] via-[#121215] to-[#0D0D10] border border-zinc-800 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden backdrop-blur-xl">
+        <div className="market-rate-card bg-gradient-to-br from-[#16161B] via-[#121215] to-[#0D0D10] border border-zinc-800 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden backdrop-blur-xl">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
@@ -58,7 +58,7 @@ export default function MarketRateSection({ onOpenBooking }) {
             </div>
 
             {/* Right Column: Interactive ROI Value Card (Mobile Responsive) */}
-            <div className="lg:col-span-5 bg-[#0C0C0E]/95 border border-zinc-800/90 rounded-2xl p-5 sm:p-7 space-y-5 shadow-2xl">
+            <div className="lg:col-span-5 market-rate-roi bg-[#0C0C0E]/95 border border-zinc-800/90 rounded-2xl p-5 sm:p-7 space-y-5 shadow-2xl">
               <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
                 <div className="flex items-center gap-2">
                   <Calculator className="w-4 h-4 text-[#F84B1D]" />
@@ -81,7 +81,7 @@ export default function MarketRateSection({ onOpenBooking }) {
                       className={`py-1.5 px-2 rounded-lg text-xs font-bold transition-colors ${
                         hourlyRate === tier.value
                           ? 'bg-[#F84B1D] text-white'
-                          : 'bg-[#18181D] text-zinc-400 hover:text-white border border-zinc-800'
+                          : 'rate-tier-btn bg-[#18181D] text-zinc-400 hover:text-white border border-zinc-800'
                       }`}
                     >
                       {tier.label}

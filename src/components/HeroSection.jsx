@@ -73,7 +73,7 @@ export default function HeroSection({ onOpenBooking, setSelectedRole }) {
               <div className="absolute -inset-1 bg-gradient-to-b from-[#F84B1D]/25 via-transparent to-[#F84B1D]/10 rounded-[28px] blur-xl opacity-60 pointer-events-none" />
 
               {/* Card Container (Exact Figma Styling from Image 1) */}
-              <div className="relative bg-[#141416]/95 border border-[#F84B1D]/40 hover:border-[#F84B1D]/60 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-black backdrop-blur-2xl transition-all duration-300">
+              <div className="relative hero-form-card bg-[#141416]/95 border border-[#F84B1D]/40 hover:border-[#F84B1D]/60 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-2xl transition-all duration-300">
                 
                 {/* Header */}
                 <div className="space-y-1.5 mb-5 sm:mb-6">
@@ -97,8 +97,8 @@ export default function HeroSection({ onOpenBooking, setSelectedRole }) {
                           onClick={() => handleRoleSelect(option.id)}
                           className={`w-full text-left px-4 py-3.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center justify-between border ${
                             isSelected
-                              ? 'bg-[#2A2A30] border-[#F84B1D] text-white shadow-lg shadow-[#F84B1D]/15'
-                              : 'bg-[#212124] border-zinc-700/50 text-zinc-300 hover:bg-[#28282D] hover:border-zinc-600'
+                              ? 'hero-role-btn-selected bg-[#2A2A30] border-[#F84B1D] text-white shadow-lg shadow-[#F84B1D]/15'
+                              : 'hero-role-btn bg-[#212124] border-zinc-700/50 text-zinc-300 hover:bg-[#28282D] hover:border-zinc-600'
                           }`}
                         >
                           <span>{option.label}</span>

@@ -128,7 +128,7 @@ export default function AboutPage() {
                 />
                 
                 {/* Floating Metric Badge */}
-                <div className="absolute -bottom-4 -right-4 sm:bottom-6 sm:right-6 bg-[#161619]/95 backdrop-blur-md border border-zinc-700/80 rounded-2xl p-4 sm:p-5 shadow-2xl flex items-center gap-4">
+                <div className="stat-float-badge absolute -bottom-4 -right-4 sm:bottom-6 sm:right-6 bg-[#161619]/95 backdrop-blur-md border border-zinc-700/80 rounded-2xl p-4 sm:p-5 shadow-2xl flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl bg-[#F84B1D]/15 border border-[#F84B1D]/30 flex items-center justify-center text-xl flex-shrink-0">
                     🎯
                   </div>
@@ -206,13 +206,13 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             
             {/* Card 1: Mission (8 cols) */}
-            <div className="lg:col-span-8 p-8 sm:p-12 rounded-3xl bg-[#121215] border border-zinc-800 relative overflow-hidden flex flex-col justify-end min-h-[300px] sm:min-h-[360px] group shadow-xl">
+            <div className="mission-card lg:col-span-8 p-8 sm:p-12 rounded-3xl bg-[#121215] border border-zinc-800 relative overflow-hidden flex flex-col justify-end min-h-[300px] sm:min-h-[360px] group shadow-xl">
               <img
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop"
                 alt="BackTech team collaboration"
                 className="absolute right-0 bottom-0 w-full sm:w-2/3 h-full object-cover opacity-10 filter grayscale mix-blend-luminosity group-hover:opacity-20 transition-opacity duration-700 pointer-events-none"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#121215] via-[#121215]/80 to-transparent pointer-events-none" />
+              <div className="dark-gradient-overlay absolute inset-0 bg-gradient-to-t from-[#121215] via-[#121215]/80 to-transparent pointer-events-none" />
 
               <div className="relative z-10 space-y-4 max-w-xl">
                 <div className="flex items-center gap-2 text-[#F84B1D] font-bold text-xs uppercase tracking-widest">
