@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import BrandPattern from './BrandPattern';
+import CtaButton from './CtaButton';
 
 export default function HeroSection({ onOpenBooking, setSelectedRole }) {
-  const [activeRole, setActiveRole] = useState('Entrepreneur/founder');
+  const [activeRole, setActiveRole] = useState(null);
 
   const roleOptions = [
     { id: 'Entrepreneur/founder', label: 'Entrepreneur/founder' },
@@ -19,8 +20,8 @@ export default function HeroSection({ onOpenBooking, setSelectedRole }) {
   };
 
   const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (setSelectedRole) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (setSelectedRole && activeRole) {
       setSelectedRole(activeRole);
     }
     onOpenBooking();
@@ -116,14 +117,14 @@ export default function HeroSection({ onOpenBooking, setSelectedRole }) {
                     })}
                   </div>
 
-                  {/* Primary CTA Button (Exact Copy from Figma Image 1) */}
+                  {/* Primary CTA Button */}
                   <div className="pt-2">
-                    <button
-                      type="submit"
-                      className="w-full py-4 px-6 rounded-2xl bg-[#F84B1D] hover:bg-[#E03E12] text-white font-heading font-bold text-sm sm:text-base tracking-wide shadow-xl shadow-[#F84B1D]/30 hover:shadow-[#F84B1D]/50 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 text-center"
-                    >
-                      Get Matched With Your EA
-                    </button>
+                    <CtaButton
+                      onClick={handleFormSubmit}
+                      text="Get matched with your EA now"
+                      className="w-full !rounded-2xl"
+                      size="lg"
+                    />
                   </div>
 
                   {/* Trust Micro-copy (Exact Copy from Figma Image 1) */}

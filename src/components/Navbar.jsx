@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import { Menu, X, Phone, Mail, Sun, Moon } from 'lucide-react';
+import CtaButton from './CtaButton';
 
 export default function Navbar({ onOpenBooking, activePage = 'home' }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -9,7 +10,7 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
   const navigate = useNavigate();
 
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('backtech-theme') || 
+    return localStorage.getItem('backtech-theme') ||
       (document.documentElement.classList.contains('light') ? 'light' : 'dark');
   });
 
@@ -51,7 +52,7 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#08080A] border-b border-zinc-800/80 shadow-2xl py-3.5 sm:py-4 transition-all duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="flex items-center justify-between">
-          
+
           {/* Logo */}
           <Link
             to="/"
@@ -70,27 +71,24 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
               onClick={() => {
                 if (location.pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`transition-colors py-2 cursor-pointer ${
-                isHome ? 'text-[#F84B1D] font-bold' : 'text-zinc-300 hover:text-white'
-              }`}
+              className={`transition-colors py-2 cursor-pointer ${isHome ? 'text-[#F84B1D] font-bold' : 'text-zinc-300 hover:text-white'
+                }`}
             >
               Home
             </Link>
 
             <Link
               to="/pricing"
-              className={`transition-colors py-2 cursor-pointer ${
-                isPricing ? 'text-[#F84B1D] font-bold' : 'text-zinc-300 hover:text-white'
-              }`}
+              className={`transition-colors py-2 cursor-pointer ${isPricing ? 'text-[#F84B1D] font-bold' : 'text-zinc-300 hover:text-white'
+                }`}
             >
               Pricing
             </Link>
 
             <Link
               to="/about"
-              className={`transition-colors py-2 cursor-pointer ${
-                isAbout ? 'text-[#F84B1D] font-bold' : 'text-zinc-300 hover:text-white'
-              }`}
+              className={`transition-colors py-2 cursor-pointer ${isAbout ? 'text-[#F84B1D] font-bold' : 'text-zinc-300 hover:text-white'
+                }`}
             >
               About Us
             </Link>
@@ -106,6 +104,20 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
 
           {/* Right Action Buttons */}
           <div className="hidden sm:flex items-center gap-3">
+            {/* Theme Toggle: Icon first */}
+            <button
+              onClick={toggleTheme}
+              className="w-8 h-8 flex items-center justify-center text-zinc-300 hover:text-white rounded-full bg-white/5 hover:bg-white/10 border border-white/5 transition-all duration-200 cursor-pointer mr-0.5"
+              aria-label="Toggle Theme"
+              title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+            >
+              {theme === 'light' ? (
+                <Moon className="w-4 h-4 text-zinc-700 hover:text-zinc-950 transition-transform" />
+              ) : (
+                <Sun className="w-4 h-4 text-zinc-200 hover:text-white transition-transform" />
+              )}
+            </button>
+
             <a
               href="#faq"
               onClick={(e) => handleSectionClick(e, 'faq')}
@@ -114,32 +126,12 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
               Careers
             </a>
 
-            {/* Theme Toggle Button beside Careers */}
-            <button
-              onClick={toggleTheme}
-              className="px-3.5 py-2 flex items-center gap-1.5 text-xs font-semibold tracking-wide text-zinc-300 bg-[#141418] hover:bg-[#1E1E24] border border-zinc-700/60 hover:border-zinc-500 rounded-full transition-all duration-200 cursor-pointer group"
-              aria-label="Toggle Light or Dark Theme"
-              title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-            >
-              {theme === 'light' ? (
-                <>
-                  <Moon className="w-3.5 h-3.5 text-[#F84B1D] group-hover:rotate-12 transition-transform" />
-                  <span className="text-[11px] font-medium">Dark</span>
-                </>
-              ) : (
-                <>
-                  <Sun className="w-3.5 h-3.5 text-[#F84B1D] group-hover:rotate-45 transition-transform" />
-                  <span className="text-[11px] font-medium">Light</span>
-                </>
-              )}
-            </button>
-
-            <button
+            <CtaButton
               onClick={onOpenBooking}
-              className="px-6 py-2.5 text-xs font-bold tracking-wide text-white bg-[#F84B1D] hover:bg-[#E03E12] rounded-full shadow-lg shadow-[#F84B1D]/25 hover:shadow-[#F84B1D]/45 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-            >
-              Book Call
-            </button>
+              text="Book call"
+              showArrow={false}
+              size="sm"
+            />
           </div>
 
           {/* Mobile Menu Button */}
@@ -165,9 +157,8 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
                     setMobileMenuOpen(false);
                     if (location.pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className={`text-lg font-semibold block ${
-                    isHome ? 'text-[#F84B1D]' : 'text-zinc-200'
-                  }`}
+                  className={`text-lg font-semibold block ${isHome ? 'text-[#F84B1D]' : 'text-zinc-200'
+                    }`}
                 >
                   Home
                 </Link>
@@ -177,9 +168,8 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
                 <Link
                   to="/pricing"
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`text-lg font-semibold block ${
-                    isPricing ? 'text-[#F84B1D]' : 'text-zinc-200'
-                  }`}
+                  className={`text-lg font-semibold block ${isPricing ? 'text-[#F84B1D]' : 'text-zinc-200'
+                    }`}
                 >
                   Pricing
                 </Link>
@@ -189,9 +179,8 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
                 <Link
                   to="/about"
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`text-lg font-semibold block ${
-                    isAbout ? 'text-[#F84B1D]' : 'text-zinc-200'
-                  }`}
+                  className={`text-lg font-semibold block ${isAbout ? 'text-[#F84B1D]' : 'text-zinc-200'
+                    }`}
                 >
                   About Us
                 </Link>
@@ -236,31 +225,24 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
               </a>
               <button
                 onClick={toggleTheme}
-                className="px-5 py-3 flex items-center justify-center gap-2 text-xs font-semibold text-zinc-200 bg-[#161619] rounded-full border border-zinc-700 cursor-pointer"
+                className="w-9 h-9 flex items-center justify-center text-zinc-200 bg-[#161619] rounded-full border border-zinc-700 cursor-pointer"
                 aria-label="Toggle theme"
               >
                 {theme === 'light' ? (
-                  <>
-                    <Moon className="w-4 h-4 text-[#F84B1D]" />
-                    <span>Dark</span>
-                  </>
+                  <Moon className="w-4 h-4 text-zinc-300" />
                 ) : (
-                  <>
-                    <Sun className="w-4 h-4 text-[#F84B1D]" />
-                    <span>Light</span>
-                  </>
+                  <Sun className="w-4 h-4 text-zinc-300" />
                 )}
               </button>
             </div>
-            <button
+            <CtaButton
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenBooking();
               }}
-              className="w-full py-4 text-xs font-bold tracking-wider uppercase text-white bg-[#F84B1D] hover:bg-[#E03E12] rounded-full shadow-xl shadow-[#F84B1D]/30"
-            >
-              Get Matched With Your EA
-            </button>
+              className="w-full"
+              size="md"
+            />
           </div>
         </div>
       )}

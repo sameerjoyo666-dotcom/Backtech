@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { Star, ArrowRight, ChevronLeft, ChevronRight, CheckCircle2, ShieldCheck, Sparkles, Building2 } from 'lucide-react';
+import { Star, ArrowRight, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import CtaButton from './CtaButton';
 
 export default function TestimonialsSection({ onOpenBooking }) {
   const scrollContainerRef = useRef(null);
@@ -52,11 +53,11 @@ export default function TestimonialsSection({ onOpenBooking }) {
       id: 'jazz',
       quote: "I used to think I had to do everything myself to keep it done right. Now my EA handles it better than I ever did.",
       highlight: "Now my EA handles it better than I ever did.",
-      author: "Andrew Wilson",
+      author: "Sameer Ashraf",
       role: "CEO",
-      company: "Jazz Wireless",
+      company: "Jazz Telecom LLC.",
       stat: "100% Delegated",
-      initials: "AW",
+      initials: "SA",
       badgeTitle: "CEO",
       banner: "/case-studies/jazz-wireless.jpg",
       themeColor: "#3B82F6",
@@ -183,31 +184,9 @@ export default function TestimonialsSection({ onOpenBooking }) {
 
         </div>
 
-        {/* ================= 3. HIGH-CONVERSION CTA & TRUST PROOF ================= */}
-        <div className="text-center pt-4 space-y-6">
-          <button
-            onClick={onOpenBooking}
-            className="inline-flex items-center gap-2.5 px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-[#F84B1D] hover:bg-[#E03E12] text-white font-heading font-bold text-xs sm:text-sm uppercase tracking-wider shadow-2xl shadow-[#F84B1D]/40 transition-all transform hover:-translate-y-0.5 cursor-pointer"
-          >
-            <span>Get Matched with your EA Now</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-
-          {/* Trust Highlights */}
-          <div className="flex items-center justify-center gap-6 sm:gap-10 text-xs text-zinc-400 flex-wrap">
-            <span className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#F84B1D]" />
-              50+ Founders Rescued
-            </span>
-            <span className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#F84B1D]" />
-              14-Day Match Guarantee
-            </span>
-            <span className="flex items-center gap-2">
-              <Building2 className="w-4 h-4 text-[#F84B1D]" />
-              100% Managed HR &amp; Compliance
-            </span>
-          </div>
+        {/* ================= 3. HIGH-CONVERSION CTA ================= */}
+        <div className="text-center pt-6 flex justify-center">
+          <CtaButton onClick={onOpenBooking} size="lg" />
         </div>
 
       </div>

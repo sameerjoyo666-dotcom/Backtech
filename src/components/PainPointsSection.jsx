@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Check } from 'lucide-react';
 import stressedHeroImg from '/pain-points.jpg';
+import CtaButton from './CtaButton';
 
 export default function PainPointsSection({ onOpenBooking }) {
-  // First item open or all closed; start with 0 so the user immediately sees the soothing design
-  const [activeTab, setActiveTab] = useState(0);
+  // Closed by default (-1) so founder can click to reveal categories
+  const [activeTab, setActiveTab] = useState(-1);
 
   const categories = [
     {
@@ -165,14 +166,9 @@ export default function PainPointsSection({ onOpenBooking }) {
               })}
             </div>
 
-            {/* CTA Button matching Image 3 */}
+            {/* CTA Button */}
             <div className="pt-5">
-              <button
-                onClick={onOpenBooking}
-                className="px-6 py-3.5 rounded-xl bg-[#161618] hover:bg-[#202024] text-[#F84B1D] border border-zinc-800 hover:border-[#F84B1D]/40 font-heading font-bold text-sm tracking-wide transition-all shadow-md focus:outline-none cursor-pointer"
-              >
-                Get Matched with your EA
-              </button>
+              <CtaButton onClick={onOpenBooking} size="md" />
             </div>
 
           </div>

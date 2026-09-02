@@ -1,5 +1,6 @@
 import React from 'react';
-import { ShieldCheck, FileText, UserCheck, Laptop, Headset, LockKeyhole, ArrowRight } from 'lucide-react';
+import { ShieldCheck, FileText, UserCheck, Laptop, Headset, LockKeyhole } from 'lucide-react';
+import CtaButton from './CtaButton';
 
 export default function SecuritySection({ onOpenBooking }) {
   const securityPillars = [
@@ -83,14 +84,8 @@ export default function SecuritySection({ onOpenBooking }) {
                 You get executive leverage with institutional safety and a 14-business-day rematch guarantee.
               </p>
             </div>
-            <div className="pt-4 sm:pt-5">
-              <button
-                onClick={onOpenBooking}
-                className="w-full py-3.5 px-5 rounded-xl bg-[#F84B1D] hover:bg-[#E53D17] text-white font-heading font-bold text-xs uppercase tracking-wider shadow-lg shadow-[#F84B1D]/25 transition-all flex items-center justify-center gap-2"
-              >
-                <span>Get Matched with your EA Now</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+            <div className="pt-4 sm:pt-5 flex justify-center">
+              <CtaButton onClick={onOpenBooking} size="sm" className="w-full" />
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Clock, Briefcase, Check, Search, Award, UserCheck } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Clock, Briefcase, Check } from 'lucide-react';
 import solutionHeroImg from '/solution-ea.jpg';
 
 export default function SolutionSection({ onOpenBooking }) {
@@ -9,24 +10,27 @@ export default function SolutionSection({ onOpenBooking }) {
     'One dedicated EA per founder'
   ];
 
-  const processSteps = [
+  const steppedProcess = [
     {
-      step: 1,
-      icon: Search,
+      step: '01',
       title: 'Precision Sourcing',
-      desc: 'We scan thousands of applicants to identify top-tier administrative and operational talent globally.'
+      desc: 'We scan thousands of applicants to identify top-tier administrative and operational talent globally.',
+      isActive: false,
+      offsetClass: 'md:ml-0',
     },
     {
-      step: 2,
-      icon: Award,
+      step: '02',
       title: 'Comprehensive Evaluation',
-      desc: 'Only the top 1% pass intensive assessments and deep interviews ensuring founder-level alignment.'
+      desc: 'Only the top 1% pass intensive assessments and deep interviews ensuring founder-level alignment.',
+      isActive: false,
+      offsetClass: 'md:ml-8 lg:ml-12',
     },
     {
-      step: 3,
-      icon: UserCheck,
+      step: '03',
       title: 'Your Dedicated EA',
-      desc: 'Ready to integrate seamlessly into your workflow and start buying back your time on day one.'
+      desc: 'Ready to integrate seamlessly into your workflow and start buying back your time on day one.',
+      isActive: true,
+      offsetClass: 'md:ml-16 lg:ml-24',
     }
   ];
 
@@ -40,7 +44,13 @@ export default function SolutionSection({ onOpenBooking }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 space-y-20 sm:space-y-24">
         
         {/* ================= TOP CARD: YOU DON'T TRAIN YOUR EA. WE DO. ================= */}
-        <div className="bg-[#121214] border border-zinc-800/90 rounded-3xl overflow-hidden shadow-2xl">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="bg-[#121214] border border-zinc-800/90 rounded-3xl overflow-hidden shadow-2xl"
+        >
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
             
             {/* Left Column: Headline, Divider, Subtext & Study Callout */}
@@ -98,64 +108,81 @@ export default function SolutionSection({ onOpenBooking }) {
             </div>
 
           </div>
-        </div>
+        </motion.div>
 
         {/* ================= BOTTOM SECTION: WHAT YOU ACTUALLY GET ================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* Left Column: Heading + 3 Checklist Cards */}
           <div className="lg:col-span-5 space-y-6">
-            <h3 className="font-heading text-3xl sm:text-4xl lg:text-[44px] font-bold text-white tracking-tight leading-[1.2]">
+            <h3 className="font-heading text-3xl sm:text-4xl lg:text-[44px] font-bold text-text-heading tracking-tight leading-[1.2]">
               What You<br />
               <span className="text-[#F84B1D]">Actually Get</span>
             </h3>
 
             <div className="space-y-3 pt-2">
               {checklistItems.map((item, idx) => (
-                <div
+                <motion.div
                   key={idx}
-                  className="p-4 sm:p-5 rounded-2xl bg-[#121215] border border-zinc-800/80 flex items-center gap-3.5 shadow-sm hover:border-zinc-700 transition-colors"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  className="p-4 sm:p-5 rounded-2xl bg-bg-alt border border-border-color flex items-center gap-3.5 shadow-sm hover:border-[#F84B1D]/30 transition-colors"
                 >
                   <div className="w-5 h-5 rounded-full border-2 border-[#F84B1D] flex items-center justify-center flex-shrink-0 text-[#F84B1D]">
                     <Check className="w-3 h-3 stroke-[3]" />
                   </div>
-                  <span className="text-sm sm:text-base font-medium text-zinc-200">
+                  <span className="text-sm sm:text-base font-medium text-text-main">
                     {item}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
 
-          {/* Right Column: 3 Numbered Steps matching Reference */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-7">
-            {processSteps.map((stepItem) => {
-              const IconComp = stepItem.icon;
-              return (
-                <div key={stepItem.step} className="relative pt-2">
-                  {/* Number Badge on Top-Left Corner */}
-                  <div className="absolute -left-2.5 -top-1 w-8 h-8 rounded-full bg-[#F84B1D] text-white font-heading font-extrabold text-xs sm:text-sm flex items-center justify-center shadow-lg shadow-[#F84B1D]/30 z-10">
-                    {stepItem.step}
+          {/* Right Column: Stepped "Stakes" Cards matching Image 3 Reference */}
+          <div className="lg:col-span-7 space-y-4 sm:space-y-5">
+            {steppedProcess.map((item, idx) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ scale: 1.015, x: 6, transition: { duration: 0.2 } }}
+                className={`${item.offsetClass} transition-all duration-300`}
+              >
+                <div
+                  className={`p-5 sm:p-6 rounded-2xl sm:rounded-3xl flex items-center gap-4 sm:gap-6 shadow-xl transition-all duration-300 ${
+                    item.isActive
+                      ? 'bg-bg-surface border-2 border-[#F84B1D] shadow-2xl shadow-[#F84B1D]/25 ring-1 ring-[#F84B1D]/40'
+                      : 'bg-bg-surface border border-border-color hover:border-[#F84B1D]/40'
+                  }`}
+                >
+                  {/* Stepped Number Box */}
+                  <div
+                    className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center font-heading font-black text-lg sm:text-xl flex-shrink-0 ${
+                      item.isActive
+                        ? 'bg-[#F84B1D] !text-white shadow-lg shadow-[#F84B1D]/40'
+                        : 'bg-bg-alt border border-border-color text-text-heading'
+                    }`}
+                  >
+                    {item.step}
                   </div>
 
-                  {/* Step Card */}
-                  <div className="p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#131316] border border-zinc-800/80 hover:border-zinc-700 transition-all flex items-center gap-5 sm:gap-6 shadow-md pl-8 sm:pl-9">
-                    <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#1C1C22] border border-zinc-700/60 text-white flex items-center justify-center flex-shrink-0">
-                      <IconComp className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                    </div>
-
-                    <div className="space-y-1">
-                      <h4 className="font-heading font-bold text-base sm:text-lg text-[#F84B1D]">
-                        {stepItem.title}
-                      </h4>
-                      <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
-                        {stepItem.desc}
-                      </p>
-                    </div>
+                  {/* Content */}
+                  <div className="space-y-1">
+                    <h4 className="font-heading font-bold text-base sm:text-xl text-[#F84B1D] tracking-tight">
+                      {item.title}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-text-muted leading-relaxed font-normal">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
-              );
-            })}
+              </motion.div>
+            ))}
           </div>
 
         </div>
@@ -164,5 +191,6 @@ export default function SolutionSection({ onOpenBooking }) {
     </section>
   );
 }
+
 
 

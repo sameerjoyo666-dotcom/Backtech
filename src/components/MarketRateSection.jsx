@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowRight, Calculator, ShieldCheck } from 'lucide-react';
+import { Calculator, ShieldCheck } from 'lucide-react';
+import CtaButton from './CtaButton';
 
 export default function MarketRateSection({ onOpenBooking }) {
   const [hoursPerWeek, setHoursPerWeek] = useState(15);
@@ -19,8 +20,8 @@ export default function MarketRateSection({ onOpenBooking }) {
     <section className="py-20 sm:py-28 relative bg-bg-alt border-y border-border-color">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
         
-        {/* Section Header Banner */}
-        <div className="market-rate-card bg-gradient-to-br from-[#16161B] via-[#121215] to-[#0D0D10] border border-zinc-800 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden backdrop-blur-xl">
+        {/* Section Header Banner (No Outer Stroke) */}
+        <div className="market-rate-card bg-gradient-to-br from-[#16161B] via-[#121215] to-[#0D0D10] border-none rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden backdrop-blur-xl">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
@@ -47,13 +48,7 @@ export default function MarketRateSection({ onOpenBooking }) {
               </p>
 
               <div className="pt-2">
-                <button
-                  onClick={onOpenBooking}
-                  className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#F84B1D] hover:bg-[#E53D17] text-white font-heading font-bold text-xs uppercase tracking-wider shadow-xl shadow-[#F84B1D]/30 transition-all transform hover:-translate-y-0.5"
-                >
-                  <span>Get Matched with your EA Now</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+                <CtaButton onClick={onOpenBooking} size="md" />
               </div>
             </div>
 
@@ -108,22 +103,22 @@ export default function MarketRateSection({ onOpenBooking }) {
 
               {/* Stat Boxes */}
               <div className="grid grid-cols-2 gap-2.5 pt-1">
-                <div className="p-3.5 rounded-xl bg-[#15151A] border border-zinc-800">
-                  <p className="text-[10px] sm:text-[11px] text-zinc-400 font-medium">Annual Hours Saved</p>
-                  <p className="font-heading font-black text-xl sm:text-2xl text-white mt-1">
-                    {annualHoursSaved}+ <span className="text-xs font-normal text-zinc-400">hrs</span>
+                <div className="p-3.5 rounded-xl bg-bg-alt border border-border-color">
+                  <p className="text-[10px] sm:text-[11px] text-text-muted font-medium">Annual Hours Saved</p>
+                  <p className="font-heading font-black text-xl sm:text-2xl text-text-heading mt-1">
+                    {annualHoursSaved}+ <span className="text-xs font-normal text-text-muted">hrs</span>
                   </p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-[#15151A] border border-zinc-800">
-                  <p className="text-[10px] sm:text-[11px] text-zinc-400 font-medium">Founder Value Unlocked</p>
-                  <p className="font-heading font-black text-xl sm:text-2xl text-emerald-400 mt-1">
+                <div className="p-3.5 rounded-xl bg-bg-alt border border-border-color">
+                  <p className="text-[10px] sm:text-[11px] text-text-muted font-medium">Founder Value Unlocked</p>
+                  <p className="font-heading font-black text-xl sm:text-2xl text-emerald-500 mt-1">
                     ${(annualFounderValueSaved / 1000).toFixed(0)}K+
                   </p>
                 </div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/5 border border-white/5 text-[11px] sm:text-xs text-zinc-300 flex items-start gap-2">
+              <div className="p-3 rounded-xl bg-bg-alt border border-border-color text-[11px] sm:text-xs text-text-main flex items-start gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#F84B1D] flex-shrink-0 mt-0.5" />
                 <span>Zero recruiting fees, zero equipment costs, 100% managed compliance.</span>
               </div>

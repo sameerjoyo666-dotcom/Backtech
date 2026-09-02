@@ -16,6 +16,7 @@ import {
 import Navbar from '../components/Navbar';
 import FooterSection from '../components/FooterSection';
 import BookingModal from '../components/BookingModal';
+import CtaButton from '../components/CtaButton';
 
 export default function AboutPage() {
   const navigate = useNavigate();
@@ -100,13 +101,7 @@ export default function AboutPage() {
 
           {/* Hero Action Button */}
           <div className="pt-4 flex justify-center">
-            <button
-              onClick={handleBooking}
-              className="px-8 py-4 rounded-full bg-[#F84B1D] hover:bg-[#E03E12] text-white font-heading font-bold text-sm tracking-wider uppercase shadow-xl shadow-[#F84B1D]/30 transition-all cursor-pointer transform hover:-translate-y-0.5 inline-flex items-center gap-2"
-            >
-              <span>Get Matched with your EA Now</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            <CtaButton onClick={handleBooking} size="md" />
           </div>
 
         </div>
@@ -288,14 +283,8 @@ export default function AboutPage() {
               Book a discovery call today. We&apos;ll map out your exact operational bottlenecks and match you with the perfect dedicated EA in 14 business days.
             </p>
 
-            <div className="pt-8">
-              <button
-                onClick={handleBooking}
-                className="inline-flex items-center gap-2 px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-[#F84B1D] hover:bg-[#E03E12] text-white font-heading font-bold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-[#F84B1D]/30 transition-all cursor-pointer transform hover:-translate-y-0.5"
-              >
-                <span>Get Matched with your EA Now</span>
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
+            <div className="pt-8 flex justify-center">
+              <CtaButton onClick={handleBooking} size="lg" />
             </div>
 
           </div>

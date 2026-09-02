@@ -292,15 +292,41 @@ html.light li {
   color: #52525B !important;
 }
 
-html.light .text-white:not(.bg-\[\#F84B1D\]):not(.bg-\[\#F84B1D\] *) {
+html.light .text-white:not(.bg-\[\#F84B1D\]):not(.bg-\[\#F84B1D\] *):not(.pricing-black-card):not(.pricing-black-card *) {
   color: #09090B !important;
 }
 
-html.light .text-zinc-100,
-html.light .text-zinc-200,
-html.light .text-zinc-300,
-html.light .text-zinc-400 {
+html.light .text-zinc-100:not(.pricing-black-card *),
+html.light .text-zinc-200:not(.pricing-black-card *),
+html.light .text-zinc-300:not(.pricing-black-card *),
+html.light .text-zinc-400:not(.pricing-black-card *) {
   color: #52525B !important;
+}
+
+/* Explicit high-contrast white text for Black Pricing Card in Light Mode */
+html.light .pricing-black-card {
+  background-color: #0D0D11 !important;
+}
+
+html.light .pricing-black-card h3,
+html.light .pricing-black-card .pricing-price-text,
+html.light .pricing-black-card [class*="text-white"] {
+  color: #FFFFFF !important;
+}
+
+html.light .pricing-black-card [class*="text-zinc-200"],
+html.light .pricing-black-card span.text-zinc-200 {
+  color: #E4E4E7 !important;
+}
+
+html.light .pricing-black-card [class*="text-zinc-400"],
+html.light .pricing-black-card span.text-zinc-400 {
+  color: #A1A1AA !important;
+}
+
+html.light .pricing-black-card button {
+  background-color: #FFFFFF !important;
+  color: #09090B !important;
 }
 
 html.light .text-zinc-500 {

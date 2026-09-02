@@ -45,12 +45,10 @@ function FaqItem({ faq, isOpen, onToggle, isDark }) {
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
-      className={`relative rounded-2xl transition-all duration-300 ${
-        isDark ? 'bg-[#0E121E] shadow-lg' : 'bg-white shadow-sm'
-      } ${
+      className={`relative rounded-2xl transition-all duration-300 bg-transparent ${
         isOpen
-          ? 'shadow-xl shadow-[#F84B1D]/15'
-          : 'hover:shadow-md'
+          ? 'shadow-lg shadow-[#F84B1D]/10'
+          : 'hover:bg-white/[0.02]'
       }`}
     >
       {/* Base Subtle Border */}
@@ -212,10 +210,10 @@ export default function FaqSection({ onOpenBooking, theme }) {
         </div>
 
         {/* Bottom prompt */}
-        <div className={`mt-10 sm:mt-12 text-center p-5 sm:p-6 rounded-2xl border text-xs sm:text-sm ${
+        <div className={`mt-10 sm:mt-12 text-center p-5 sm:p-6 rounded-2xl border bg-transparent text-xs sm:text-sm ${
           isDark 
-            ? 'bg-[#0E121E] border-white/10 text-zinc-300' 
-            : 'bg-white border-zinc-200 text-zinc-600'
+            ? 'border-white/10 text-zinc-300' 
+            : 'border-zinc-200 text-zinc-600'
         }`}>
           <span>Have a specific operational scenario or custom workflow? </span>
           <button

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check } from 'lucide-react';
+import CtaButton from './CtaButton';
 
 export default function ComparisonSection({ onOpenBooking }) {
   const comparisonData = [
@@ -118,13 +119,7 @@ export default function ComparisonSection({ onOpenBooking }) {
               * business days
             </span>
 
-            <button
-              onClick={onOpenBooking}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#F84B1D] hover:bg-[#E03E12] text-white font-heading font-bold text-xs uppercase tracking-wider shadow-lg shadow-[#F84B1D]/30 transition-all cursor-pointer transform hover:-translate-y-0.5"
-            >
-              <span>Get Matched with your EA Now</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            <CtaButton onClick={onOpenBooking} size="md" />
           </div>
 
         </div>
