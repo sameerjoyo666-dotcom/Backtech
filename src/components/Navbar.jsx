@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
-import { Menu, X, Phone, Mail } from 'lucide-react';
+import { Menu, X, Phone, Mail, Sun, Moon } from 'lucide-react';
 
 export default function Navbar({ onOpenBooking, activePage = 'home' }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('backtech-theme') || 
+      (document.documentElement.classList.contains('light') ? 'light' : 'dark');
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('light', theme === 'light');
+    localStorage.setItem('backtech-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -99,6 +113,27 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
             >
               Careers
             </a>
+
+            {/* Theme Toggle Button beside Careers */}
+            <button
+              onClick={toggleTheme}
+              className="px-3.5 py-2 flex items-center gap-1.5 text-xs font-semibold tracking-wide text-zinc-300 bg-[#141418] hover:bg-[#1E1E24] border border-zinc-700/60 hover:border-zinc-500 rounded-full transition-all duration-200 cursor-pointer group"
+              aria-label="Toggle Light or Dark Theme"
+              title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+            >
+              {theme === 'light' ? (
+                <>
+                  <Moon className="w-3.5 h-3.5 text-[#F84B1D] group-hover:rotate-12 transition-transform" />
+                  <span className="text-[11px] font-medium">Dark</span>
+                </>
+              ) : (
+                <>
+                  <Sun className="w-3.5 h-3.5 text-[#F84B1D] group-hover:rotate-45 transition-transform" />
+                  <span className="text-[11px] font-medium">Light</span>
+                </>
+              )}
+            </button>
+
             <button
               onClick={onOpenBooking}
               className="px-6 py-2.5 text-xs font-bold tracking-wide text-white bg-[#F84B1D] hover:bg-[#E03E12] rounded-full shadow-lg shadow-[#F84B1D]/25 hover:shadow-[#F84B1D]/45 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
@@ -191,13 +226,32 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
           </div>
 
           <div className="pt-6 border-t border-zinc-800 space-y-3">
-            <a
-              href="#faq"
-              onClick={(e) => handleSectionClick(e, 'faq')}
-              className="w-full block text-center py-3 text-xs font-semibold tracking-wider text-zinc-200 bg-[#161619] rounded-full border border-zinc-700"
-            >
-              Careers
-            </a>
+            <div className="flex gap-2">
+              <a
+                href="#faq"
+                onClick={(e) => handleSectionClick(e, 'faq')}
+                className="flex-1 block text-center py-3 text-xs font-semibold tracking-wider text-zinc-200 bg-[#161619] rounded-full border border-zinc-700"
+              >
+                Careers
+              </a>
+              <button
+                onClick={toggleTheme}
+                className="px-5 py-3 flex items-center justify-center gap-2 text-xs font-semibold text-zinc-200 bg-[#161619] rounded-full border border-zinc-700 cursor-pointer"
+                aria-label="Toggle theme"
+              >
+                {theme === 'light' ? (
+                  <>
+                    <Moon className="w-4 h-4 text-[#F84B1D]" />
+                    <span>Dark</span>
+                  </>
+                ) : (
+                  <>
+                    <Sun className="w-4 h-4 text-[#F84B1D]" />
+                    <span>Light</span>
+                  </>
+                )}
+              </button>
+            </div>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
