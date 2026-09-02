@@ -120,13 +120,16 @@ export default function FooterSection({ onOpenBooking }) {
                 </Link>
               </li>
               <li>
-                <a 
-                  href="/#solution" 
-                  onClick={(e) => handleNavClick(e, 'solution')}
-                  className="hover:text-[#F84B1D] transition-colors"
+                <Link 
+                  to="/about" 
+                  className={`transition-colors ${
+                    location.pathname === '/about' 
+                      ? 'text-[#F84B1D] font-bold' 
+                      : 'hover:text-[#F84B1D]'
+                  }`}
                 >
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
                 <a 

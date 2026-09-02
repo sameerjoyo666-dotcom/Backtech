@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import HomePage from './pages/HomePage';
 import MatchFlowPage from './pages/MatchFlowPage';
 import PricingPage from './pages/PricingPage';
+import AboutPage from './pages/AboutPage';
 
 // Ensures page scrolls to top on route change or to hash element when hash exists
 function ScrollToTopOrHash() {
@@ -35,6 +36,7 @@ export default function App() {
       <ScrollToTopOrHash />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/match" element={<MatchFlowPage />} />
         <Route path="/signup-match" element={<MatchFlowPage />} />

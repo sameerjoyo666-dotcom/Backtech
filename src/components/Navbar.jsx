@@ -17,7 +17,8 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
   }, [mobileMenuOpen]);
 
   const isPricing = location.pathname === '/pricing' || activePage === 'pricing';
-  const isHome = location.pathname === '/' && activePage !== 'pricing';
+  const isAbout = location.pathname === '/about' || activePage === 'about';
+  const isHome = location.pathname === '/' && activePage !== 'pricing' && activePage !== 'about';
 
   const handleSectionClick = (e, sectionId) => {
     e.preventDefault();
@@ -71,13 +72,14 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
               Pricing
             </Link>
 
-            <a
-              href="/#solution"
-              onClick={(e) => handleSectionClick(e, 'solution')}
-              className="transition-colors py-2 text-zinc-300 hover:text-white cursor-pointer"
+            <Link
+              to="/about"
+              className={`transition-colors py-2 cursor-pointer ${
+                isAbout ? 'text-[#F84B1D] font-bold' : 'text-zinc-300 hover:text-white'
+              }`}
             >
               About Us
-            </a>
+            </Link>
 
             <a
               href="/#testimonials"
@@ -149,13 +151,15 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
               </div>
 
               <div className="border-b border-zinc-800/80 pb-3">
-                <a
-                  href="/#solution"
-                  onClick={(e) => handleSectionClick(e, 'solution')}
-                  className="text-lg font-semibold block text-zinc-200"
+                <Link
+                  to="/about"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`text-lg font-semibold block ${
+                    isAbout ? 'text-[#F84B1D]' : 'text-zinc-200'
+                  }`}
                 >
                   About Us
-                </a>
+                </Link>
               </div>
 
               <div className="border-b border-zinc-800/80 pb-3">
