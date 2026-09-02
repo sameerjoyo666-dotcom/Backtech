@@ -99,19 +99,10 @@ html.light body {
   color: #18181B !important;
 }
 
-/* 1. All dark solid backgrounds & dark opacity variations -> White or Off-White */
-html.light [class*="bg-\[\#0"],
-html.light [class*="bg-\[\#1"],
-html.light [class*="bg-\[\#2"],
-html.light [class*="bg-zinc-8"],
-html.light [class*="bg-zinc-9"],
-html.light [class*="bg-zinc-950"] {
-  background-color: #FFFFFF !important;
-}
-
-/* Page canvas sections -> #F8F9FA */
+/* 1. Page canvas sections -> #F8F9FA */
 html.light section,
 html.light main,
+html.light .bg-\[\#0A0A0B\],
 html.light .bg-\[\#08080A\],
 html.light .bg-\[\#070709\],
 html.light .bg-\[\#0D0D10\],
@@ -123,7 +114,7 @@ html.light .bg-\[\#000000\] {
   background-color: #F8F9FA !important;
 }
 
-/* 2. Kill dark gradients on cards (like MarketRate and Mission cards) */
+/* 2. Neutralize dark gradients and texture overlays */
 html.light [class*="from-\[\#1"],
 html.light [class*="from-\[\#0"],
 html.light [class*="via-\[\#1"],
@@ -133,14 +124,19 @@ html.light [class*="to-\[\#1"] {
   background-color: #FFFFFF !important;
 }
 
-/* Dark gradient overlay masks inside cards -> hide them in light mode */
-html.light [class*="bg-gradient-to-t"][class*="from-\[\#121215\]"],
-html.light [class*="bg-gradient-to-b"][class*="from-transparent"][class*="to-bg-inverse"],
-html.light [class*="bg-grain-texture"] {
+html.light .bg-grain-texture {
   background-image: none !important;
 }
 
-/* 3. Cards & Containers elevation & borders */
+/* Tone down ambient glows on light backgrounds */
+html.light .blur-\[120px\],
+html.light .blur-\[140px\],
+html.light .blur-\[150px\],
+html.light .blur-\[160px\] {
+  opacity: 0.1 !important;
+}
+
+/* 3. Cards & Containers -> Pure White with clean elevation */
 html.light [class*="bg-\[\#1212"],
 html.light [class*="bg-\[\#1313"],
 html.light [class*="bg-\[\#1414"],
@@ -150,13 +146,14 @@ html.light [class*="bg-\[\#1A1A"],
 html.light [class*="bg-\[\#1C16"],
 html.light [class*="bg-\[\#1C1C"],
 html.light [class*="bg-\[\#0C0C"],
+html.light [class*="bg-zinc-8"],
 html.light [class*="bg-zinc-9"] {
   background-color: #FFFFFF !important;
   border-color: #E4E4E7 !important;
   box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.05) !important;
 }
 
-/* 4. Inputs, selects, and options in Hero Form & Booking Modal */
+/* 4. Form inputs, options, and controls */
 html.light [class*="bg-\[\#2121"],
 html.light [class*="bg-\[\#2828"],
 html.light [class*="bg-\[\#2A2A"],
@@ -171,41 +168,26 @@ html.light input::placeholder {
   color: #A1A1AA !important;
 }
 
-/* Selected state in Hero Form */
-html.light [class*="border-\[\#F84B1D\]"][class*="bg-\[\#2A2A30\]"] {
-  background-color: #FFF5F2 !important;
-  border-color: #F84B1D !important;
-  color: #09090B !important;
-}
-
-/* 5. Comparison Table specific light mode styling */
-html.light .bg-\[\#16161A\],
-html.light [class*="bg-\[\#16161A\]"] {
-  background-color: #F4F4F6 !important;
-  border-color: #E4E4E7 !important;
-}
-
-html.light [class*="bg-\[\#F84B1D\]\/10"] {
-  background-color: #FFF3F0 !important;
-  border-color: rgba(248, 75, 29, 0.3) !important;
-}
-
-html.light [class*="bg-\[\#F84B1D\]\/10"] span,
-html.light [class*="bg-\[\#F84B1D\]\/10"] div {
-  color: #18181B !important;
-}
-
-/* 6. Typography across the site */
+/* 5. TYPOGRAPHY - GUARANTEED HIGH-CONTRAST READABLE TEXT */
 html.light h1,
 html.light h2,
 html.light h3,
 html.light h4,
 html.light h5,
-html.light h6,
-html.light .text-white {
+html.light h6 {
   color: #09090B !important;
 }
 
+html.light p,
+html.light li {
+  color: #52525B !important;
+}
+
+html.light .text-white:not(.bg-\[\#F84B1D\]):not(.bg-\[\#F84B1D\] *) {
+  color: #09090B !important;
+}
+
+html.light .text-zinc-100,
 html.light .text-zinc-200,
 html.light .text-zinc-300,
 html.light .text-zinc-400 {
@@ -216,47 +198,53 @@ html.light .text-zinc-500 {
   color: #71717A !important;
 }
 
-/* 7. ALL BRAND ORANGE BUTTONS, BADGES, AND HIGHLIGHTS */
+/* Brand orange accents stay orange */
 html.light .text-\[\#F84B1D\] {
   color: #F84B1D !important;
 }
 
+/* 6. BRAND ORANGE BUTTONS & BADGES (Clean exact class matching, NO WILDCARDS) */
 html.light .bg-\[\#F84B1D\],
-html.light [class*="bg-\[\#F84B1D\]"]:not([class*="bg-\[\#F84B1D\]\/10"]):not([class*="bg-\[\#F84B1D\]\/15"]):not([class*="bg-\[\#F84B1D\]\/20"]) {
+html.light button.bg-\[\#F84B1D\],
+html.light a.bg-\[\#F84B1D\],
+html.light span.bg-\[\#F84B1D\] {
   background-color: #F84B1D !important;
   color: #FFFFFF !important;
 }
 
 html.light .bg-\[\#F84B1D\] *,
-html.light [class*="bg-\[\#F84B1D\]"]:not([class*="bg-\[\#F84B1D\]\/10"]):not([class*="bg-\[\#F84B1D\]\/15"]):not([class*="bg-\[\#F84B1D\]\/20"]) * {
+html.light button.bg-\[\#F84B1D\] *,
+html.light a.bg-\[\#F84B1D\] * {
   color: #FFFFFF !important;
 }
 
-/* Rate selector buttons in MarketRate calculator */
-html.light [class*="bg-\[\#18181D\]"] button,
-html.light [class*="bg-\[\#0C0C0E\]"] button:not(.bg-\[\#F84B1D\]) {
-  background-color: #FFFFFF !important;
-  color: #52525B !important;
-  border-color: #E4E4E7 !important;
-}
-
-/* 8. Floating badges & UI tags (e.g. 50+ Founders Rescued on About Page) */
-html.light .shadow-2xl,
-html.light .shadow-xl {
-  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.08) !important;
-}
-
-/* 9. Header & Footer in light mode */
+/* 7. Navigation Header in Light Mode */
 html.light header {
   background-color: rgba(255, 255, 255, 0.96) !important;
   border-bottom: 1px solid #E4E4E7 !important;
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04) !important;
 }
 
+html.light header nav a:not(.text-\[\#F84B1D\]) {
+  color: #3F3F46 !important;
+}
+html.light header nav a:hover {
+  color: #F84B1D !important;
+}
+
+html.light header a[href*="faq"],
+html.light header button[title*="Mode"],
+html.light header button[aria-label*="Theme"] {
+  background-color: #FFFFFF !important;
+  border-color: #D4D4D8 !important;
+  color: #18181B !important;
+}
+
 html.light header > div.fixed {
   background-color: rgba(255, 255, 255, 0.98) !important;
 }
 
+/* 8. Footer in Light Mode */
 html.light footer {
   background-color: #F4F4F6 !important;
   border-top: 1px solid #E4E4E7 !important;
@@ -277,32 +265,7 @@ html.light footer a:hover * {
   color: #F84B1D !important;
 }
 
-/* 10. Borders everywhere */
-html.light .border-zinc-800,
-html.light .border-zinc-700,
-html.light [class*="border-zinc-800"],
-html.light [class*="border-zinc-700"],
-html.light [class*="border-white\/10"] {
-  border-color: #E4E4E7 !important;
-}
-
-/* 11. Modal backdrop in light mode */
-html.light .bg-black\/85 {
-  background-color: rgba(15, 23, 42, 0.5) !important;
-}
-
-/* Scrollbars in light mode */
-html.light ::-webkit-scrollbar-track {
-  background: #F4F4F6;
-}
-html.light ::-webkit-scrollbar-thumb {
-  background: #D4D4D8;
-}
-html.light ::-webkit-scrollbar-thumb:hover {
-  background: #A1A1AA;
-}
-
-/* 12. Component Specific Light Mode Overrides */
+/* 9. Component Specific Overrides */
 html.light .stat-float-badge {
   background-color: #FFFFFF !important;
   border-color: #E4E4E7 !important;
@@ -356,6 +319,14 @@ html.light .comparison-table-footer {
   background-color: #F8F9FA !important;
   border-color: #E4E4E7 !important;
 }
+html.light [class*="bg-\[\#F84B1D\]\/10"] {
+  background-color: #FFF3F0 !important;
+  border-color: rgba(248, 75, 29, 0.3) !important;
+}
+html.light [class*="bg-\[\#F84B1D\]\/10"] span,
+html.light [class*="bg-\[\#F84B1D\]\/10"] div {
+  color: #18181B !important;
+}
 
 html.light .market-rate-card {
   background-image: none !important;
@@ -366,8 +337,36 @@ html.light .market-rate-roi {
   background-color: #F8F9FA !important;
   border-color: #E4E4E7 !important;
 }
-html.light .rate-tier-btn {
+html.light .rate-tier-btn,
+html.light [class*="bg-\[\#18181D\]"] button,
+html.light [class*="bg-\[\#0C0C0E\]"] button:not(.bg-\[\#F84B1D\]) {
   background-color: #FFFFFF !important;
   border-color: #E4E4E7 !important;
   color: #52525B !important;
 }
+
+/* 10. Borders everywhere */
+html.light .border-zinc-800,
+html.light .border-zinc-700,
+html.light [class*="border-zinc-800"],
+html.light [class*="border-zinc-700"],
+html.light [class*="border-white\/10"] {
+  border-color: #E4E4E7 !important;
+}
+
+/* 11. Modal backdrop in light mode */
+html.light .bg-black\/85 {
+  background-color: rgba(15, 23, 42, 0.5) !important;
+}
+
+/* Scrollbars in light mode */
+html.light ::-webkit-scrollbar-track {
+  background: #F4F4F6;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #D4D4D8;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #A1A1AA;
+}
+

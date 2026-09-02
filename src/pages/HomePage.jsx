@@ -22,7 +22,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="bg-[#0A0A0B] text-[#E4E4E7] font-sans antialiased min-h-screen selection:bg-[#F84B1D] selection:text-white">
+    <div className="bg-[#0A0A0B] text-[#E4E4E7] font-sans antialiased min-h-screen">
       {/* Navigation Header */}
       <Navbar onOpenBooking={() => handleNavigateToMatch()} />
 
