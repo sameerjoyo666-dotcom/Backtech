@@ -4,29 +4,29 @@ import { ChevronDown } from 'lucide-react';
 
 const FAQ_ITEMS = [
   {
-    q: "How is this different from a freelance VA on Upwork or Fiverr?",
-    a: "Freelance platforms give you access to a marketplace, we give you a fully vetted, trained, and managed EA. We handle sourcing, testing, and ongoing accountability. You just tell us what needs doing."
+    q: 'What actually is a BackTech EA, and how is it different from a freelancer?',
+    a: 'A BackTech EA is a full-time, dedicated executive operator employed and managed by us. Unlike unvetted freelancers on Upwork or Fiverr, our EAs are tested on logic, communication, and executive operations. They come pre-trained on M365 and Google Workspace, backed by BackTech managers, and covered by ironclad NDAs.',
   },
   {
-    q: "What if my EA isn't the right fit?",
-    a: "You get a free rematch within 14 business days, no questions asked. We'd rather fix the match than leave you stuck with someone who isn't working out."
+    q: 'How fast can I get matched and onboarded with my dedicated EA?',
+    a: 'Our placement sprint takes 14 business days or less. We take your exact operational bottlenecks, match you with the top 1% candidate specifically suited for your workflow, and manage the full onboarding and handover protocol.',
   },
   {
-    q: "How do you handle confidentiality and data security?",
-    a: "Every EA signs an NDA before day one and passes a background and ID verification check. We also use institutional-grade security across every tool your EA touches."
+    q: 'What if my EA isn\'t the right cultural or operational fit?',
+    a: 'We offer a 100% Free Rematch Guarantee. If within the first 14 business days you feel the match isn\'t ideal, we will rematch and onboard a new executive assistant at zero additional charge, zero friction.',
   },
   {
-    q: "What tasks can my EA actually handle?",
-    a: "Inbox and calendar management, vendor and invoice coordination, meeting prep, travel booking, personal scheduling, and more — most founders start with inbox and calendar, then hand off more as trust builds."
+    q: 'How do you ensure data security, privacy, and confidentiality?',
+    a: 'Security is paramount. Every BackTech EA signs a legally binding non-disclosure agreement before seeing a single credential. We implement enterprise credential management (LastPass/1Password), enforce hardware security protocols, and back all operations with remote wipe capability.',
   },
   {
-    q: "How much does it cost?",
-    a: "One flat monthly subscription — no hourly billing, no surprise invoices, one straight subscription."
+    q: 'What tasks can I immediately offload to my BackTech EA?',
+    a: 'Inbox triage, high-stakes calendar management, travel itineraries, client follow-ups, CRM updates, invoice drafting, meeting agendas and summaries, research, and standard operating procedures (SOPs). If it’s an operational task you do repeatedly, your EA can own it.',
   },
   {
-    q: "How fast can I get matched with an EA?",
-    a: "Most founders are matched within 14 business days of their discovery call."
-  }
+    q: 'What are the pricing terms and contract commitments?',
+    a: 'BackTech operates on a simple, predictable monthly subscription ($1,800/month flat). No hourly tracking, no unexpected overtime bills, no payroll taxes, and no long-term restrictive lock-ins.',
+  },
 ];
 
 function FaqItem({ faq, isOpen, onToggle, isDark }) {
@@ -46,7 +46,7 @@ function FaqItem({ faq, isOpen, onToggle, isDark }) {
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
       className={`relative rounded-2xl transition-all duration-300 ${
-        isDark ? 'bg-[#121215]/90' : 'bg-white'
+        isDark ? 'bg-[#0E121E] shadow-lg' : 'bg-white shadow-sm'
       } ${
         isOpen
           ? 'shadow-xl shadow-[#F84B1D]/15'
@@ -57,7 +57,7 @@ function FaqItem({ faq, isOpen, onToggle, isDark }) {
       <div 
         className={`absolute inset-0 rounded-2xl border pointer-events-none transition-colors duration-300 ${
           isDark 
-            ? 'border-zinc-800/80' 
+            ? 'border-white/10' 
             : 'border-zinc-200/90'
         }`} 
       />
@@ -92,7 +92,7 @@ function FaqItem({ faq, isOpen, onToggle, isDark }) {
       <button
         type="button"
         onClick={onToggle}
-        className="relative z-10 w-full py-4.5 sm:py-5 px-5 sm:px-6 text-left flex items-center justify-between gap-4 focus:outline-none cursor-pointer"
+        className="relative z-10 w-full py-5 px-5 sm:px-7 text-left flex items-center justify-between gap-4 focus:outline-none cursor-pointer"
       >
         <span
           className={`font-heading font-bold text-sm sm:text-base lg:text-lg transition-colors duration-200 ${
@@ -101,7 +101,7 @@ function FaqItem({ faq, isOpen, onToggle, isDark }) {
               : isDark
                 ? isHovered
                   ? 'text-white'
-                  : 'text-zinc-200'
+                  : 'text-zinc-100'
                 : isHovered
                   ? 'text-zinc-950'
                   : 'text-zinc-900'
@@ -116,7 +116,7 @@ function FaqItem({ faq, isOpen, onToggle, isDark }) {
               : isDark
                 ? isHovered
                   ? 'bg-[#F84B1D]/20 text-[#F84B1D]'
-                  : 'bg-zinc-800 text-zinc-400'
+                  : 'bg-zinc-800 text-zinc-300'
                 : isHovered
                   ? 'bg-[#F84B1D]/15 text-[#F84B1D]'
                   : 'bg-zinc-100 text-zinc-500'
@@ -138,9 +138,9 @@ function FaqItem({ faq, isOpen, onToggle, isDark }) {
             className="overflow-hidden relative z-10"
           >
             <div
-              className={`px-5 sm:px-6 pb-5 sm:pb-6 pt-1 text-xs sm:text-sm lg:text-base font-normal leading-relaxed ${
+              className={`px-5 sm:px-7 pb-6 pt-1 text-xs sm:text-sm lg:text-base font-normal leading-relaxed ${
                 isDark
-                  ? 'text-zinc-300 border-t border-zinc-800/60'
+                  ? 'text-zinc-300 border-t border-white/10'
                   : 'text-zinc-600 border-t border-zinc-100'
               }`}
             >
@@ -153,10 +153,26 @@ function FaqItem({ faq, isOpen, onToggle, isDark }) {
   );
 }
 
-export default function FaqSection({ onOpenBooking, theme = 'dark' }) {
-  // Default closed (null) so no question is open by default
+export default function FaqSection({ onOpenBooking, theme }) {
   const [openIndex, setOpenIndex] = useState(null);
-  const isDark = theme === 'dark';
+  const [isLight, setIsLight] = useState(() => {
+    if (typeof document !== 'undefined') {
+      return document.documentElement.classList.contains('light');
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsLight(document.documentElement.classList.contains('light'));
+    };
+    checkTheme();
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
+  const isDark = theme ? theme === 'dark' : !isLight;
 
   return (
     <section 
@@ -198,15 +214,16 @@ export default function FaqSection({ onOpenBooking, theme = 'dark' }) {
         {/* Bottom prompt */}
         <div className={`mt-10 sm:mt-12 text-center p-5 sm:p-6 rounded-2xl border text-xs sm:text-sm ${
           isDark 
-            ? 'bg-[#121216]/90 border-zinc-800 text-zinc-400' 
-            : 'bg-white border-zinc-200 text-zinc-600 shadow-xs'
+            ? 'bg-[#0E121E] border-white/10 text-zinc-300' 
+            : 'bg-white border-zinc-200 text-zinc-600'
         }`}>
-          Have a specific operational workflow question?{' '}
+          <span>Have a specific operational scenario or custom workflow? </span>
           <button
             onClick={onOpenBooking}
-            className="text-[#F84B1D] hover:underline font-semibold focus:outline-none"
+            className="text-[#F84B1D] font-bold hover:underline inline-flex items-center gap-1 ml-1 cursor-pointer"
           >
-            Speak directly with our executive team &rarr;
+            <span>Ask us on a 20-min intro call</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
@@ -214,5 +231,3 @@ export default function FaqSection({ onOpenBooking, theme = 'dark' }) {
     </section>
   );
 }
-
-

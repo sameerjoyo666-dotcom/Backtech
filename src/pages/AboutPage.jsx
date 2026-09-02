@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { 
-  Target, 
   Zap, 
   ShieldCheck, 
   MessageSquare, 
-  Cpu 
+  Cpu, 
+  Search, 
+  CheckCircle2, 
+  UserCheck, 
+  ArrowRight,
+  Compass,
+  Award
 } from 'lucide-react';
 
 import Navbar from '../components/Navbar';
@@ -13,33 +18,14 @@ import FooterSection from '../components/FooterSection';
 import BookingModal from '../components/BookingModal';
 
 export default function AboutPage() {
+  const navigate = useNavigate();
   const [bookingOpen, setBookingOpen] = useState(false);
 
+  const handleBooking = () => {
+    navigate('/match');
+  };
 
-  const teamMembers = [
-    {
-      name: 'Muhammad',
-      role: 'Co-Founder',
-      img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=500&auto=format&fit=crop'
-    },
-    {
-      name: 'Adnan',
-      role: 'Co-Founder',
-      img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=500&auto=format&fit=crop'
-    },
-    {
-      name: 'Farhan',
-      role: 'Co-Founder',
-      img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=500&auto=format&fit=crop'
-    },
-    {
-      name: 'Omer',
-      role: 'Head of HR',
-      img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=500&auto=format&fit=crop'
-    }
-  ];
-
-  const principles = [
+  const philosophyPillars = [
     {
       icon: Zap,
       title: 'Systematic Execution',
@@ -48,12 +34,12 @@ export default function AboutPage() {
     {
       icon: ShieldCheck,
       title: 'Centralized Accountability',
-      desc: 'We handle all the headaches—from payroll to HR. If a problem arises, BackTech owns it. No excuses.'
+      desc: 'We handle all the headaches—from payroll to HR. If a problem arises, BackTech owns it.'
     },
     {
       icon: MessageSquare,
       title: 'Seamless Communication',
-      desc: 'Clear, proactive communication is our lifeblood. We keep every update, deadline, and expectation crystal clear across every time zone.'
+      desc: 'Clear, proactive communication is our lifeblood. Your EA is trained on how founders think.'
     },
     {
       icon: Cpu,
@@ -62,201 +48,168 @@ export default function AboutPage() {
     }
   ];
 
+  const vettingSteps = [
+    {
+      step: '01',
+      icon: Search,
+      title: 'Precision Sourcing',
+      desc: 'We scan thousands of applicants to identify top-tier administrative and operational talent.'
+    },
+    {
+      step: '02',
+      icon: CheckCircle2,
+      title: 'Comprehensive Evaluation',
+      desc: 'Only the top 1% pass intensive assessments and deep interviews ensuring founder-level alignment.'
+    },
+    {
+      step: '03',
+      icon: UserCheck,
+      title: 'Your Dedicated EA',
+      desc: 'Ready to integrate seamlessly into your workflow and start buying back your time on day one.'
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-[#08080A] text-white selection:bg-[#F84B1D]/20 selection:text-[#F84B1D] overflow-x-hidden">
+    <div className="min-h-screen bg-bg-page text-text-main font-sans selection:bg-[#F84B1D] selection:text-white overflow-x-hidden antialiased flex flex-col justify-between">
       
       {/* Universal Sticky Navbar */}
-      <Navbar onOpenBooking={() => setBookingOpen(true)} activePage="about" />
+      <Navbar onOpenBooking={handleBooking} activePage="about" />
 
-      {/* ================= HERO: MANIFESTO ================= */}
-      <section className="relative pt-36 sm:pt-44 pb-20 sm:pb-28 overflow-hidden">
-        {/* Background Ambience Texture */}
-        <div className="absolute inset-0 bg-grain-texture opacity-40 pointer-events-none" />
+      {/* ================= 1. HERO SECTION / MANIFESTO ================= */}
+      <section className="relative pt-36 sm:pt-44 pb-20 sm:pb-28 overflow-hidden bg-bg-page bg-backtech-mesh">
+        {/* Atmospheric ambient glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#F84B1D]/10 rounded-full blur-[150px] pointer-events-none" />
-        <div className="absolute bottom-0 right-10 w-96 h-96 bg-[#FF7A50]/5 rounded-full blur-[130px] pointer-events-none" />
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6 sm:space-y-8">
           
           {/* Eyebrow Badge */}
           <div className="inline-block px-6 py-2.5 rounded-full bg-[#F84B1D] text-white text-xs sm:text-sm font-semibold shadow-xs">
-            Our manifesto
+            About BackTech
           </div>
 
           {/* Headline */}
-          <h1 className="font-heading text-4xl sm:text-6xl lg:text-[68px] font-bold text-white tracking-tight leading-[1.12]">
-            The Future of Work is<br />
+          <h1 className="font-heading text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-text-heading leading-[1.12]">
+            The Future of Executive Support is{' '}
             <span className="text-[#F84B1D]">Managed.</span>
           </h1>
 
-          {/* Subtitle */}
-          <p className="text-base sm:text-xl text-zinc-300 max-w-2xl mx-auto font-normal leading-relaxed">
-            We didn&apos;t just build a staffing agency — we are a remote managed staffing BPO helping founders buy back their time and scale with confidence.
+          {/* Subheadline / Tagline */}
+          <p className="text-base sm:text-xl text-text-muted max-w-3xl mx-auto font-normal leading-relaxed">
+            We provide Founders and CEOs with fully managed, Top 1% Executive Assistants to buy back their time, scale operations, and focus on growth.
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <a
-              href="#story"
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#F84B1D] hover:bg-[#E03E12] text-white text-sm font-bold tracking-wide shadow-lg shadow-[#F84B1D]/25 transition-all text-center"
+          {/* Hero Action Button */}
+          <div className="pt-4 flex justify-center">
+            <button
+              onClick={handleBooking}
+              className="px-8 py-4 rounded-full bg-[#F84B1D] hover:bg-[#E03E12] text-white font-heading font-bold text-sm tracking-wider uppercase shadow-xl shadow-[#F84B1D]/30 transition-all cursor-pointer transform hover:-translate-y-0.5 inline-flex items-center gap-2"
             >
-              Read Our Story
-            </a>
-            <Link
-              to="/match"
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#141418] hover:bg-[#1A1A22] border border-zinc-700/80 hover:border-zinc-500 text-zinc-200 hover:text-white text-sm font-semibold tracking-wide transition-all text-center"
-            >
-              Source The Talent
-            </Link>
+              <span>Get Matched with your EA Now</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
 
         </div>
       </section>
 
-      {/* ================= SECTION 2: THE ORIGIN STORY ================= */}
-      <section id="story" className="py-20 sm:py-28 bg-[#0D0D10] border-y border-zinc-800/80 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      {/* ================= 2. OUR ORIGIN STORY ================= */}
+      <section id="origin-story" className="py-20 sm:py-28 relative bg-bg-alt border-y border-border-color">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            
-            {/* Left Column: Image with Floating Stat Badge */}
-            <div className="lg:col-span-5 relative">
-              <div className="rounded-3xl overflow-hidden border border-zinc-800/90 bg-[#121215] shadow-2xl relative group">
-                <img
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop"
-                  alt="BackTech leadership planning session"
-                  className="w-full h-auto object-cover aspect-[4/5] filter grayscale contrast-105 group-hover:scale-102 transition-transform duration-500"
-                />
-                
-                {/* Floating Metric Badge */}
-                <div className="stat-float-badge absolute -bottom-4 -right-4 sm:bottom-6 sm:right-6 bg-[#161619]/95 backdrop-blur-md border border-zinc-700/80 rounded-2xl p-4 sm:p-5 shadow-2xl flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#F84B1D]/15 border border-[#F84B1D]/30 flex items-center justify-center text-xl flex-shrink-0">
-                    🎯
-                  </div>
-                  <div>
-                    <div className="font-heading font-extrabold text-2xl text-white">50+</div>
-                    <div className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">Founders Rescued</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: Origin Narrative */}
-            <div className="lg:col-span-7 space-y-6">
-              
-              <div className="inline-block px-6 py-2.5 rounded-full bg-[#F84B1D] text-white text-xs sm:text-sm font-semibold shadow-xs">
-                The origin story
-              </div>
-
-              <h2 className="font-heading text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-[1.2]">
-                We built BackTech because the standard remote work model was broken.
-              </h2>
-
-              {/* Founder Quote Callout */}
-              <div className="relative pl-6 border-l-4 border-[#F84B1D] bg-[#141418]/60 p-5 rounded-r-2xl border-y border-r border-zinc-800/80">
-                <p className="text-base sm:text-lg text-zinc-200 font-medium italic leading-relaxed">
-                  &ldquo;With an engineering background, our leadership started by managing operations for a single company that had remote employees scattered everywhere. There were communication gaps, no centralized systems, and tracking daily work was a nightmare.&rdquo;
-                </p>
-              </div>
-
-              <div className="space-y-4 text-sm sm:text-base text-zinc-300 leading-relaxed font-normal">
-                <p>
-                  Founders don&apos;t just need &ldquo;a body in a seat&rdquo; overseas. They need robust internal systems, managed HR, and elite operators who take extreme ownership. So, we pushed to consolidate all remote operations into one centralized infrastructure with strict HR and operational checks.
-                </p>
-                <p>
-                  Once we scaled that initial operation to 30+ people, we realized we hadn&apos;t just solved our own problem—we had engineered a recruitment and management engine capable of rescuing any overwhelmed founder.
-                </p>
-                <p>
-                  What started out of necessity has become the trusted backbone for hundreds of businesses globally. BackTech isn&apos;t a freelance platform; we hire staff and manage elite professionals internally, so you just get the results.
-                </p>
-              </div>
-
-              {/* Leadership Signoff Box */}
-              <div className="pt-2">
-                <div className="p-5 rounded-2xl bg-[#141418] border border-zinc-800 inline-block">
-                  <div className="font-heading font-bold text-lg text-white">The Founding Team</div>
-                  <div className="text-xs font-semibold text-[#F84B1D] tracking-wider uppercase">Leadership, BackTech</div>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* ================= SECTION 3: PHILOSOPHY & PRINCIPLES ================= */}
-      <section className="py-20 sm:py-28 bg-[#08080A] relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-16">
-          
-          {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto space-y-4">
-            <div className="inline-block px-6 py-2.5 rounded-full bg-[#F84B1D] text-white text-xs sm:text-sm font-semibold shadow-xs">
-              Philosophy
-            </div>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-              What Drives Us Forward
+          <div className="text-center space-y-3 sm:space-y-4 mb-10 sm:mb-14">
+            <span className="inline-block px-5 py-2 rounded-full bg-[#F84B1D]/15 text-[#F84B1D] text-xs font-bold tracking-wide uppercase">
+              Our Journey
+            </span>
+            <h2 className="font-heading text-3xl sm:text-5xl font-bold tracking-tight text-text-heading">
+              Our Origin Story
             </h2>
-            <p className="text-sm sm:text-base text-zinc-400">
-              These four principles dictate every internal hire we make and every client we partner with — they are the operating system behind every professional we place.
+          </div>
+
+          <div className="bg-bg-surface border border-border-color rounded-3xl p-6 sm:p-12 shadow-xl space-y-6 sm:space-y-8 text-left">
+            <p className="text-base sm:text-lg font-semibold text-text-heading leading-relaxed">
+              We built BackTech because the standard remote work model for executive support was broken.
+            </p>
+
+            <p className="text-sm sm:text-base text-text-main leading-relaxed">
+              Founders don&apos;t just need a &ldquo;virtual assistant&rdquo; to do basic data entry or manage an overflowing inbox. They need elite operators who take extreme ownership, combined with robust internal systems and managed HR. We realized the market was flooded with gig workers and unreliable platforms that created more work for founders, rather than taking it off their plates.
+            </p>
+
+            <div className="p-6 rounded-2xl bg-[#F84B1D]/10 border border-[#F84B1D]/25">
+              <p className="text-sm sm:text-base text-text-main font-medium leading-relaxed">
+                So, we engineered a recruitment and management engine capable of rescuing any overwhelmed founder. What started out of necessity has become the trusted backbone for hundreds of businesses globally.
+              </p>
+            </div>
+
+            <p className="text-sm sm:text-base text-text-main leading-relaxed">
+              BackTech isn&apos;t a freelance platform; we source, vet, train, and manage top 1% Executive Assistants internally, so you just get the results.
             </p>
           </div>
 
-          {/* Mission & Vision Bento Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            
-            {/* Card 1: Mission (8 cols) */}
-            <div className="mission-card lg:col-span-8 p-8 sm:p-12 rounded-3xl bg-[#121215] border border-zinc-800 relative overflow-hidden flex flex-col justify-end min-h-[300px] sm:min-h-[360px] group shadow-xl">
-              <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop"
-                alt="BackTech team collaboration"
-                className="absolute right-0 bottom-0 w-full sm:w-2/3 h-full object-cover opacity-10 filter grayscale mix-blend-luminosity group-hover:opacity-20 transition-opacity duration-700 pointer-events-none"
-              />
-              <div className="dark-gradient-overlay absolute inset-0 bg-gradient-to-t from-[#121215] via-[#121215]/80 to-transparent pointer-events-none" />
+        </div>
+      </section>
 
-              <div className="relative z-10 space-y-4 max-w-xl">
-                <div className="flex items-center gap-2 text-[#F84B1D] font-bold text-xs uppercase tracking-widest">
-                  <Target className="w-4 h-4" />
-                  Our Mission
-                </div>
-                <h3 className="font-heading text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-snug">
-                  To raise the reputation of remote work globally by providing businesses with a reliable, fully managed staffing infrastructure.
-                </h3>
+      {/* ================= 3. OUR PHILOSOPHY ================= */}
+      <section id="philosophy" className="py-20 sm:py-28 relative bg-bg-surface">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-14 sm:mb-18">
+            <span className="inline-block px-5 py-2 rounded-full bg-[#F84B1D]/15 text-[#F84B1D] text-xs font-bold tracking-wide uppercase">
+              Core Principles
+            </span>
+            <h2 className="font-heading text-3xl sm:text-5xl font-bold tracking-tight text-text-heading">
+              Our Philosophy
+            </h2>
+          </div>
+
+          {/* Mission & Vision Banner */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 sm:mb-16">
+            
+            {/* Mission */}
+            <div className="bg-bg-alt border border-border-color rounded-3xl p-7 sm:p-9 shadow-lg space-y-4 relative overflow-hidden">
+              <div className="w-12 h-12 rounded-2xl bg-[#F84B1D]/15 flex items-center justify-center text-[#F84B1D]">
+                <Compass className="w-6 h-6" />
               </div>
+              <h3 className="font-heading font-bold text-xl sm:text-2xl text-text-heading">
+                Our Mission
+              </h3>
+              <p className="text-sm sm:text-base text-text-main leading-relaxed">
+                To raise the standard of executive support globally by providing founders with a reliable, fully managed infrastructure of elite talent.
+              </p>
             </div>
 
-            {/* Card 2: Vision (4 cols) */}
-            <div className="lg:col-span-4 p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[#F84B1D] to-[#CF380F] text-white relative overflow-hidden flex flex-col justify-end min-h-[300px] sm:min-h-[360px] shadow-xl group">
-              <div className="space-y-4 relative z-10">
-                <div className="flex items-center gap-2 text-white/90 font-bold text-xs uppercase tracking-widest">
-                  <Zap className="w-4 h-4" />
-                  Our Vision
-                </div>
-                <h3 className="font-heading text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-snug">
-                  To be the global standard for dedicated remote business operations.
-                </h3>
+            {/* Vision */}
+            <div className="bg-bg-alt border border-border-color rounded-3xl p-7 sm:p-9 shadow-lg space-y-4 relative overflow-hidden">
+              <div className="w-12 h-12 rounded-2xl bg-[#F84B1D]/15 flex items-center justify-center text-[#F84B1D]">
+                <Award className="w-6 h-6" />
               </div>
+              <h3 className="font-heading font-bold text-xl sm:text-2xl text-text-heading">
+                Our Vision
+              </h3>
+              <p className="text-sm sm:text-base text-text-main leading-relaxed">
+                To be the global standard for dedicated, executive-level remote operations.
+              </p>
             </div>
 
           </div>
 
-          {/* 4 Operating Principles Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {principles.map((p, idx) => {
-              const IconComp = p.icon;
+          {/* 4 Execution Pillars */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {philosophyPillars.map((pillar, idx) => {
+              const Icon = pillar.icon;
               return (
-                <div
+                <div 
                   key={idx}
-                  className="p-8 rounded-3xl bg-[#121215] border border-zinc-800/90 hover:border-zinc-700 transition-all space-y-5 shadow-sm group"
+                  className="bg-bg-alt border border-border-color rounded-2xl p-6 space-y-4 shadow-sm hover:border-[#F84B1D]/40 transition-all duration-300"
                 >
-                  <div className="w-13 h-13 rounded-2xl bg-[#18181D] border border-zinc-700/60 flex items-center justify-center text-[#F84B1D] group-hover:scale-105 transition-transform">
-                    <IconComp className="w-6 h-6" />
+                  <div className="w-10 h-10 rounded-xl bg-[#F84B1D]/15 flex items-center justify-center text-[#F84B1D]">
+                    <Icon className="w-5 h-5" />
                   </div>
-                  <h4 className="font-heading font-bold text-lg text-white">
-                    {p.title}
+                  <h4 className="font-heading font-bold text-lg text-text-heading">
+                    {pillar.title}
                   </h4>
-                  <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                    {p.desc}
+                  <p className="text-xs sm:text-sm text-text-muted leading-relaxed">
+                    {pillar.desc}
                   </p>
                 </div>
               );
@@ -266,110 +219,91 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ================= SECTION 5: THE LEADERSHIP TEAM ================= */}
-      <section className="py-20 sm:py-28 bg-[#08080A] relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-16">
+      {/* ================= 4. OUR VETTING PROCESS ================= */}
+      <section id="vetting" className="py-20 sm:py-28 relative bg-bg-alt border-y border-border-color">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="text-center max-w-xl mx-auto space-y-4">
-            <div className="inline-block px-6 py-2.5 rounded-full bg-[#F84B1D] text-white text-xs sm:text-sm font-semibold shadow-xs">
-              The leadership team
-            </div>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-              Engineered by Operators, for Business Owners.
+          <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-14 sm:mb-18">
+            <span className="inline-block px-5 py-2 rounded-full bg-[#F84B1D]/15 text-[#F84B1D] text-xs font-bold tracking-wide uppercase">
+              Top 1% Talent
+            </span>
+            <h2 className="font-heading text-3xl sm:text-5xl font-bold tracking-tight text-text-heading">
+              Our Vetting Process
             </h2>
+            <p className="text-sm sm:text-lg text-text-muted">
+              We source, vet, and train your EA — so you never have to. Only the top 1% make it through.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {teamMembers.map((member, idx) => (
-              <div
-                key={idx}
-                className="rounded-3xl bg-[#121215] border border-zinc-800/90 overflow-hidden group hover:border-zinc-700 transition-all shadow-md"
-              >
-                <div className="w-full aspect-square overflow-hidden bg-[#161619]">
-                  <img
-                    src={member.img}
-                    alt={member.name}
-                    className="w-full h-full object-cover filter grayscale contrast-105 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-500"
-                  />
-                </div>
-                <div className="p-6 text-center space-y-1">
-                  <h4 className="font-heading font-bold text-lg text-white">
-                    {member.name}
-                  </h4>
-                  <p className="text-xs font-semibold text-[#F84B1D] tracking-wider uppercase">
-                    {member.role}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {vettingSteps.map((step, idx) => {
+              const StepIcon = step.icon;
+              return (
+                <div 
+                  key={idx}
+                  className="bg-bg-surface border border-border-color rounded-3xl p-7 sm:p-9 shadow-lg space-y-5 relative group hover:border-[#F84B1D]/40 transition-all duration-300"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-2xl bg-[#F84B1D]/15 flex items-center justify-center text-[#F84B1D]">
+                      <StepIcon className="w-6 h-6" />
+                    </div>
+                    <span className="font-heading font-black text-3xl text-zinc-400/40">
+                      {step.step}
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading font-bold text-xl text-text-heading">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-text-muted leading-relaxed">
+                    {step.desc}
                   </p>
                 </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Borderless Network Callout Banner */}
-          <div className="rounded-3xl bg-[#121215] border border-zinc-800/90 p-8 sm:p-14 text-center relative overflow-hidden shadow-2xl space-y-10">
-            <div className="max-w-2xl mx-auto space-y-4 relative z-10">
-              <div className="inline-block px-6 py-2 rounded-full bg-[#1A1A20] text-zinc-300 text-xs font-semibold border border-zinc-700">
-                Global impact
-              </div>
-              <h3 className="font-heading text-2xl sm:text-4xl font-bold text-white tracking-tight">
-                A Truly Borderless Network
-              </h3>
-              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                We source from emerging tech hubs globally and handle all the internal structuring, ensuring you get world-class talent with overlapping time zones without the headache of compliance.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-4 relative z-10 border-t border-zinc-800">
-              <div className="space-y-1">
-                <div className="font-heading font-extrabold text-4xl sm:text-5xl text-[#F84B1D]">70+</div>
-                <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Active Remote Professionals</div>
-              </div>
-              <div className="space-y-1">
-                <div className="font-heading font-extrabold text-4xl sm:text-5xl text-[#F84B1D]">100%</div>
-                <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Fully Managed HR</div>
-              </div>
-              <div className="space-y-1">
-                <div className="font-heading font-extrabold text-4xl sm:text-5xl text-[#F84B1D]">24/7</div>
-                <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Coverage Capability</div>
-              </div>
-            </div>
+              );
+            })}
           </div>
 
         </div>
       </section>
 
-      {/* ================= SECTION 6: CLOSER CTA ================= */}
-      <section className="py-20 sm:py-28 bg-[#0D0D10] border-t border-zinc-800/80 relative text-center">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          
-          <h2 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">
-            Build The Team That<br />
-            <span className="text-[#F84B1D]">Buys Back Your Time.</span>
-          </h2>
+      {/* ================= 5. CLOSING CALL TO ACTION ================= */}
+      <section className="py-24 relative bg-bg-page overflow-hidden">
+        
+        {/* Ambient Backtech Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#F84B1D]/12 rounded-full blur-[160px] pointer-events-none" />
 
-          <p className="text-base sm:text-lg text-zinc-300 max-w-xl mx-auto font-normal leading-relaxed">
-            Book a discovery call today. We&apos;ll map out your exact operational bottlenecks and match you with the perfect dedicated professional.
-          </p>
+        <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+          <div className="bg-bg-surface border border-[#F84B1D]/40 rounded-3xl p-8 sm:p-14 text-center shadow-2xl relative overflow-hidden">
+            
+            <div className="inline-block px-6 py-2.5 rounded-full bg-[#F84B1D] text-white text-xs sm:text-sm font-semibold shadow-xs mb-6">
+              Get Started
+            </div>
 
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => setBookingOpen(true)}
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#F84B1D] hover:bg-[#E03E12] text-white text-sm font-bold tracking-wide shadow-lg shadow-[#F84B1D]/25 transition-all cursor-pointer"
-            >
-              Book Your Discovery Call
-            </button>
-            <Link
-              to="/match"
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#141418] hover:bg-[#1A1A22] border border-zinc-700/80 hover:border-zinc-500 text-zinc-200 hover:text-white text-sm font-semibold tracking-wide transition-all cursor-pointer"
-            >
-              Get Matched With Your EA
-            </Link>
+            <h2 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold text-text-heading tracking-tight leading-tight max-w-3xl mx-auto">
+              Ready to Get your <span className="text-[#F84B1D]">time back?</span>
+            </h2>
+
+            <p className="text-text-muted text-base sm:text-lg max-w-2xl mx-auto mt-4 font-normal leading-relaxed">
+              Book a discovery call today. We&apos;ll map out your exact operational bottlenecks and match you with the perfect dedicated EA in 14 business days.
+            </p>
+
+            <div className="pt-8">
+              <button
+                onClick={handleBooking}
+                className="inline-flex items-center gap-2 px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-[#F84B1D] hover:bg-[#E03E12] text-white font-heading font-bold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-[#F84B1D]/30 transition-all cursor-pointer transform hover:-translate-y-0.5"
+              >
+                <span>Get Matched with your EA Now</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+            </div>
+
           </div>
-
         </div>
       </section>
 
       {/* Universal Footer */}
-      <FooterSection onOpenBooking={() => setBookingOpen(true)} />
+      <FooterSection />
 
       {/* Interactive Booking Modal */}
       <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} />
@@ -377,3 +311,4 @@ export default function AboutPage() {
     </div>
   );
 }
+
