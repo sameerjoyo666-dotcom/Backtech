@@ -15,33 +15,6 @@ import BookingModal from '../components/BookingModal';
 export default function AboutPage() {
   const [bookingOpen, setBookingOpen] = useState(false);
 
-  const vettingSteps = [
-    {
-      step: '01',
-      title: 'Internal Sourcing',
-      desc: 'We actively filter through thousands of global profiles to check English fluency, logical reasoning, and past experience.',
-      badge: 'Hundreds Evaluated'
-    },
-    {
-      step: '02',
-      title: 'Systems Testing',
-      desc: 'Candidates execute timed, real-world tasks to verify their capability with modern communication and work systems.',
-      badge: 'Top 15% Pass'
-    },
-    {
-      step: '03',
-      title: 'Live Interviews',
-      desc: 'Our internal HR team conducts rigorous live interviews probing for culture fit, communication nuances, and proactive problem solving.',
-      badge: 'Top 5% Pass'
-    },
-    {
-      step: '04',
-      title: 'Staffed & Assigned',
-      desc: 'We hire them onto our internal payroll, manage their HR, and assign them directly to you for final task training.',
-      badge: 'Dedicated to You',
-      highlight: true
-    }
-  ];
 
   const teamMembers = [
     {
@@ -288,64 +261,6 @@ export default function AboutPage() {
                 </div>
               );
             })}
-          </div>
-
-        </div>
-      </section>
-
-      {/* ================= SECTION 4: INTERNAL VETTING GAUNTLET ================= */}
-      <section id="vetting" className="py-20 sm:py-28 bg-[#0D0D10] border-y border-zinc-800/80 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-16">
-          
-          <div className="text-center max-w-2xl mx-auto space-y-4">
-            <div className="inline-block px-6 py-2.5 rounded-full bg-[#F84B1D] text-white text-xs sm:text-sm font-semibold shadow-xs">
-              Internal vetting
-            </div>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-              How We Staff Our Operations
-            </h2>
-            <p className="text-sm sm:text-base text-zinc-400">
-              Our internal hiring process isn&apos;t just about finding people; it&apos;s about testing, training, and managing them. When you subscribe to BackTech, you bypass this entire gauntlet.
-            </p>
-          </div>
-
-          {/* 4 Connected Stages */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {vettingSteps.map((step, idx) => (
-              <div
-                key={idx}
-                className="p-8 rounded-3xl bg-[#121215] border border-zinc-800/90 flex flex-col justify-between space-y-6 relative group hover:border-zinc-700 transition-all shadow-md"
-              >
-                <div className="space-y-4">
-                  {/* Step Number Badge */}
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-heading font-extrabold text-sm border ${
-                    step.highlight 
-                      ? 'bg-[#F84B1D] text-white border-[#F84B1D] shadow-lg shadow-[#F84B1D]/25' 
-                      : 'bg-[#18181D] text-zinc-300 border-zinc-700'
-                  }`}>
-                    {step.step}
-                  </div>
-
-                  <h3 className="font-heading font-bold text-lg text-white">
-                    {step.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-normal">
-                    {step.desc}
-                  </p>
-                </div>
-
-                <div className="pt-2">
-                  <span className={`inline-block px-3.5 py-1.5 rounded-full text-[11px] font-semibold border ${
-                    step.highlight
-                      ? 'bg-[#F84B1D]/15 text-[#F84B1D] border-[#F84B1D]/30'
-                      : 'bg-[#18181D] text-zinc-300 border-zinc-700/60'
-                  }`}>
-                    {step.badge}
-                  </span>
-                </div>
-              </div>
-            ))}
           </div>
 
         </div>
