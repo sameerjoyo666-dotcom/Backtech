@@ -77,6 +77,22 @@
   box-shadow: 0 0 100px -20px rgba(255, 77, 38, 0.3);
 }
 
+/* Infinite Marquee Scroll for Testimonials */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-scroll {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 40s linear infinite;
+}
+
+.animate-marquee-scroll:hover {
+  animation-play-state: paused;
+}
+
 /* Framing boundary guide line for mockup alignment */
 .vertical-grid-guide {
   position: absolute;
@@ -368,5 +384,26 @@ html.light ::-webkit-scrollbar-thumb {
 }
 html.light ::-webkit-scrollbar-thumb:hover {
   background: #A1A1AA;
+}
+
+/* Testimonial marquee light mode edge fades */
+html.light .testimonial-marquee-fade-left {
+  background: linear-gradient(to right, #F8F9FA, transparent) !important;
+}
+html.light .testimonial-marquee-fade-right {
+  background: linear-gradient(to left, #F8F9FA, transparent) !important;
+}
+
+html.light .testimonial-card-gradient {
+  background: linear-gradient(to top, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 60%, transparent 100%) !important;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 

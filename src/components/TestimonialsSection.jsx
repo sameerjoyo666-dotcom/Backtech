@@ -1,158 +1,247 @@
-import React from 'react';
-import { Star, ArrowRight, CheckCircle2 } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { Star, ArrowRight, ChevronLeft, ChevronRight, CheckCircle2, ShieldCheck, Sparkles, Building2 } from 'lucide-react';
 
 export default function TestimonialsSection({ onOpenBooking }) {
+  const scrollContainerRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+
   const testimonials = [
     {
+      id: 'tallywise',
       quote: "I used to spend my Sunday nights prepping for the week, inbox, calendar, all of it. Now my EA has it handled before I even open my laptop Monday morning.",
+      highlight: "Handled before I even open my laptop Monday morning.",
       author: "Abid Hussain",
       role: "Founder & CFO",
       company: "Tallywise",
-      stat: "15+ hrs/wk saved",
+      stat: "20+ hrs/wk saved",
       initials: "AH",
-      image: "/Case Study 02.jpg"
+      badgeTitle: "FOUNDER",
+      banner: "/case-studies/tallywise.jpg",
+      themeColor: "#22C55E",
+      themeBg: "rgba(34, 197, 94, 0.08)"
     },
     {
+      id: 'nextar',
       quote: "My EA runs my calendar better than I ever did. I haven't double-booked a meeting in four months.",
+      highlight: "I haven't double-booked a meeting in four months.",
       author: "Junaid Merchant",
       role: "Founder",
       company: "Nextar Solitaire",
-      stat: "0 Double-bookings",
+      stat: "0 Double-Bookings",
       initials: "JM",
-      image: "/Case Study 03.jpg"
+      badgeTitle: "FOUNDER",
+      banner: "/case-studies/nextar-solitaire.jpg",
+      themeColor: "#EAB308",
+      themeBg: "rgba(234, 179, 8, 0.08)"
     },
     {
+      id: 'cellular',
       quote: "I was skeptical about a remote EA handling anything sensitive. Six months in, she knows my business better than most of my team.",
+      highlight: "Six months in, she knows my business better than most of my team.",
       author: "Josh Hokit",
       role: "Partner",
       company: "Cellular Operations",
       stat: "6+ Months Active",
       initials: "JH",
-      image: "/Case Study 03-01.jpg"
+      badgeTitle: "PARTNER",
+      banner: "/case-studies/cellular-operations.jpg",
+      themeColor: "#06B6D4",
+      themeBg: "rgba(6, 182, 212, 0.08)"
     },
     {
+      id: 'jazz',
       quote: "I used to think I had to do everything myself to keep it done right. Now my EA handles it better than I ever did.",
+      highlight: "Now my EA handles it better than I ever did.",
       author: "Andrew Wilson",
       role: "CEO",
       company: "Jazz Wireless",
       stat: "100% Delegated",
       initials: "AW",
-      image: "/Case Study 03-04.jpg"
-    },
+      badgeTitle: "CEO",
+      banner: "/case-studies/jazz-wireless.jpg",
+      themeColor: "#3B82F6",
+      themeBg: "rgba(59, 130, 246, 0.08)"
+    }
   ];
 
+  // Manual smooth horizontal scrolling
+  const scroll = (direction) => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = direction === 'left' ? -420 : 420;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section id="testimonials" className="py-20 sm:py-28 relative bg-[#08080A] border-t border-zinc-800/80 bg-grain-texture">
+    <section id="testimonials" className="py-20 sm:py-28 relative bg-[#08080A] border-t border-zinc-800/80 overflow-hidden">
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+      {/* Ambient background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[1000px] h-[400px] sm:h-[500px] bg-[#F84B1D]/6 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 space-y-12 sm:space-y-16">
         
-        {/* Section Header (v4 Copy) */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-12 sm:mb-16">
-          <span className="inline-block px-6 py-2.5 rounded-full bg-[#F84B1D] text-white text-xs sm:text-sm font-semibold shadow-xs">
-            What founders say
-          </span>
-          <h2 className="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            We Could Say We're Great,{' '}
-            <span className="text-[#F84B1D]">But Our Clients Already Did.</span>
-          </h2>
-          <p className="text-zinc-400 text-sm sm:text-lg">
-            Real feedback from the CEOs and founders who hired through BackTech.
-          </p>
+        {/* ================= SECTION HEADER ================= */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="space-y-3 sm:space-y-4 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F84B1D]/10 border border-[#F84B1D]/30 text-[#F84B1D] text-xs sm:text-sm font-semibold">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>What Employers Say</span>
+            </div>
+
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+              We Could Say We're Great,{' '}
+              <span className="text-[#F84B1D]">But Our Clients Already Did.</span>
+            </h2>
+
+            <p className="text-zinc-400 text-sm sm:text-base lg:text-lg font-normal">
+              Real feedback from the CEOs and founders who hired through BackTech.
+            </p>
+          </div>
+
+          {/* Navigation Arrows for Slider */}
+          <div className="flex items-center gap-3 self-start md:self-end">
+            <button
+              onClick={() => scroll('left')}
+              aria-label="Previous Testimonial"
+              className="w-12 h-12 rounded-full bg-[#141418] hover:bg-[#1E1E24] border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              aria-label="Next Testimonial"
+              className="w-12 h-12 rounded-full bg-[#141418] hover:bg-[#1E1E24] border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
-        {/* 4 Testimonials Grid (2x2 Grid on Desktop) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
-          {testimonials.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-[#121216]/95 border border-zinc-800/90 hover:border-[#F84B1D]/40 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 shadow-xl group backdrop-blur-xl relative overflow-hidden"
-            >
-              {/* Subtle top image preview */}
-              <div className="h-32 -mx-6 -mt-6 sm:-mx-8 sm:-mt-8 mb-5 overflow-hidden relative border-b border-zinc-800/80">
-                <img
-                  src={item.image}
-                  alt={`${item.company} Case Study`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-60"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121216] via-[#121216]/60 to-transparent" />
-                <div className="absolute top-3 right-3">
-                  <span className="text-[10px] sm:text-[11px] font-semibold text-emerald-400 bg-black/80 px-2.5 py-1 rounded-full border border-emerald-500/30 backdrop-blur-md">
-                    {item.stat}
-                  </span>
-                </div>
-                <div className="absolute bottom-2 left-4 font-heading font-bold text-sm text-white flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-[#F84B1D]" />
-                  {item.company}
-                </div>
-              </div>
+        {/* ================= CAROUSEL DECK (INFINITE LOOP TRACK) ================= */}
+        <div 
+          className="relative w-full -mx-4 px-4 sm:mx-0 sm:px-0"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Subtle gradient edge fade masks */}
+          <div className="hidden lg:block absolute top-0 left-0 bottom-0 w-16 bg-gradient-to-r from-[#08080A] to-transparent z-10 pointer-events-none testimonial-marquee-fade-left" />
+          <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-[#08080A] to-transparent z-10 pointer-events-none testimonial-marquee-fade-right" />
 
-              <div className="space-y-4">
-                {/* 5 Stars */}
-                <div className="flex items-center gap-1 text-[#F84B1D]">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#F84B1D]" />
-                  ))}
+          {/* Scrolling Track: Continuous Infinite Loop with Marquee or Horizontal Scroll */}
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-6 sm:gap-8 overflow-x-auto pb-4 pt-2 no-scrollbar scroll-smooth snap-x snap-mandatory"
+          >
+            {/* Repeated array for continuous flow */}
+            {[...testimonials, ...testimonials].map((item, idx) => (
+              <div
+                key={`${item.id}-${idx}`}
+                className="w-[300px] sm:w-[380px] lg:w-[410px] flex-shrink-0 snap-center rounded-[32px] overflow-hidden bg-[#121216] border border-zinc-800 hover:border-zinc-700/80 shadow-2xl transition-all duration-300 group hover:-translate-y-1.5 flex flex-col justify-between"
+                style={{
+                  boxShadow: '0 20px 40px -15px rgba(0,0,0,0.5)'
+                }}
+              >
+                
+                {/* 1. TOP CASE STUDY BANNER (COMPLETELY CLEAN - ZERO TAGS OVER IMAGE) */}
+                <div className="relative w-full aspect-[16/10] overflow-hidden bg-[#0A0A0C]">
+                  <img
+                    src={item.banner}
+                    alt={`${item.company} Banner`}
+                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700"
+                  />
+                  {/* Smooth bottom gradient overlay blending seamlessly into card body */}
+                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#121216] via-[#121216]/60 to-transparent pointer-events-none testimonial-card-gradient" />
                 </div>
 
-                {/* Quote text (Exact v4 copy) */}
-                <p className="text-zinc-200 text-sm sm:text-base font-normal leading-relaxed italic">
-                  &ldquo;{item.quote}&rdquo;
-                </p>
-              </div>
+                {/* 2. CARD LOWER BODY (Typography & Testimonial Quote) */}
+                <div className="p-6 sm:p-7 pt-1 flex-1 flex flex-col justify-between space-y-6">
+                  
+                  <div className="space-y-4">
+                    {/* 5 Stars Rating */}
+                    <div className="flex items-center gap-1 text-[#F84B1D]">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-[#F84B1D]" />
+                      ))}
+                    </div>
 
-              {/* Author Info */}
-              <div className="pt-5 mt-5 border-t border-zinc-800/80 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#1C1C22] border border-zinc-700 flex items-center justify-center font-heading font-bold text-xs sm:text-sm text-[#F84B1D] flex-shrink-0">
-                    {item.initials}
-                  </div>
-                  <div>
-                    <h4 className="font-heading font-bold text-sm sm:text-base text-white">
-                      {item.author}
-                    </h4>
-                    <p className="text-xs text-zinc-400">
-                      {item.role}, <span className="text-zinc-300 font-medium">{item.company}</span>
+                    {/* Bold Testimonial Quote */}
+                    <p className="font-heading font-bold text-base sm:text-lg lg:text-[19px] text-white leading-snug tracking-tight">
+                      &ldquo;{item.quote}&rdquo;
                     </p>
                   </div>
+
+                  {/* 3. CARD FOOTER META ROW (Reference Design Style) */}
+                  <div className="pt-4 border-t border-zinc-800/80 flex items-center justify-between gap-3">
+                    
+                    {/* Left: Square Pill Badge with Initials (like DEC 12 TUE in reference) */}
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-2xl bg-[#1A1A20] border border-zinc-700/70 flex flex-col items-center justify-center text-center flex-shrink-0 shadow-inner">
+                        <span className="text-[9px] font-bold text-[#F84B1D] tracking-widest leading-none">
+                          {item.badgeTitle}
+                        </span>
+                        <span className="font-heading font-extrabold text-xs text-white leading-tight">
+                          {item.initials}
+                        </span>
+                      </div>
+
+                      {/* Middle: Author Name & Company */}
+                      <div>
+                        <h4 className="font-heading font-bold text-sm text-white leading-tight">
+                          {item.author}
+                        </h4>
+                        <p className="text-xs text-zinc-400 mt-0.5 leading-tight">
+                          {item.role}, <span className="text-zinc-300 font-semibold">{item.company}</span>
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Right: Key Result Metric */}
+                    <div className="text-right flex-shrink-0">
+                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#1A1A20] text-emerald-400 border border-emerald-500/30">
+                        {item.stat}
+                      </span>
+                    </div>
+
+                  </div>
+
                 </div>
 
-                <div className="hidden sm:flex items-center gap-1 text-[11px] text-zinc-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#F84B1D]" />
-                  <span>Verified Hire</span>
-                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Micro Helper Text */}
+          <div className="flex items-center justify-between text-xs text-zinc-500 pt-2 px-2">
+            <span>Scroll or use arrows to view all 4 client case studies</span>
+            <span className="hidden sm:inline">Infinite verified client stream</span>
+          </div>
+
         </div>
 
-        {/* CTA Bar below testimonials */}
-        <div className="text-center mb-12">
+        {/* ================= 3. HIGH-CONVERSION CTA & TRUST PROOF ================= */}
+        <div className="text-center pt-6 space-y-6">
           <button
             onClick={onOpenBooking}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#F84B1D] hover:bg-[#E53D17] text-white font-heading font-bold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-[#F84B1D]/30 transition-all transform hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2.5 px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-[#F84B1D] hover:bg-[#E03E12] text-white font-heading font-bold text-xs sm:text-sm uppercase tracking-wider shadow-2xl shadow-[#F84B1D]/40 transition-all transform hover:-translate-y-0.5 cursor-pointer"
           >
             <span>Get Matched with your EA Now</span>
             <ArrowRight className="w-4 h-4" />
           </button>
-        </div>
 
-        {/* Social Proof Stats Banner */}
-        <div className="bg-[#121216]/95 border border-zinc-800/80 rounded-2xl p-5 sm:p-8 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center shadow-xl backdrop-blur-xl">
-          <div>
-            <p className="font-heading font-extrabold text-2xl sm:text-4xl text-[#F84B1D]">Top 1%</p>
-            <p className="text-[10px] sm:text-xs text-zinc-400 mt-1 uppercase tracking-wider">Vetted Talent Selection</p>
-          </div>
-          <div>
-            <p className="font-heading font-extrabold text-2xl sm:text-4xl text-white">14 Days</p>
-            <p className="text-[10px] sm:text-xs text-zinc-400 mt-1 uppercase tracking-wider">Business Day Match</p>
-          </div>
-          <div>
-            <p className="font-heading font-extrabold text-2xl sm:text-4xl text-white">500+ hrs</p>
-            <p className="text-[10px] sm:text-xs text-zinc-400 mt-1 uppercase tracking-wider">Reclaimed Per Year</p>
-          </div>
-          <div>
-            <p className="font-heading font-extrabold text-2xl sm:text-4xl text-emerald-400">98.4%</p>
-            <p className="text-[10px] sm:text-xs text-zinc-400 mt-1 uppercase tracking-wider">Client Retention Rate</p>
+          {/* Trust Highlights */}
+          <div className="flex items-center justify-center gap-6 sm:gap-10 text-xs text-zinc-400 flex-wrap">
+            <span className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-[#F84B1D]" />
+              50+ Founders Rescued
+            </span>
+            <span className="flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-[#F84B1D]" />
+              14-Day Match Guarantee
+            </span>
+            <span className="flex items-center gap-2">
+              <Building2 className="w-4 h-4 text-[#F84B1D]" />
+              100% Managed HR &amp; Compliance
+            </span>
           </div>
         </div>
 
@@ -160,4 +249,6 @@ export default function TestimonialsSection({ onOpenBooking }) {
     </section>
   );
 }
+
+
 
