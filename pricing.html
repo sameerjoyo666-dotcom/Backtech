@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — BackTech | Simple, Predictable Cost</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#F84B1D',
+              orangeHover: '#E03E12',
+              dark: '#0A0A0B',
+              obsidian: '#141416'
+            }
+          },
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #FAF8F5;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #18181B;
+    }
+    .font-heading {
+      font-family: 'Outfit', sans-serif;
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen selection:bg-[#F84B1D] selection:text-white flex flex-col justify-between">
+
+  <!-- ================= EXACT HOMEPAGE NAVIGATION HEADER ================= -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-[#08080A]/95 backdrop-blur-xl border-b border-zinc-800/80 shadow-2xl shadow-black/80 py-3.5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div class="flex items-center justify-between">
+        
+        <!-- Official Logo from Home Page -->
+        <a href="index.html" class="flex items-center focus:outline-none">
+          <img src="/logo-white.png" alt="BackTech Logo" class="h-7 sm:h-8 w-auto object-contain" onerror="this.onerror=null; this.src='BT-Logo White@3x.png';">
+        </a>
+
+        <!-- Desktop Navigation Links (Exact Figma List) -->
+        <nav class="hidden md:flex items-center gap-9 text-sm font-medium">
+          <a href="index.html" class="text-zinc-300 hover:text-white transition-colors py-2">Home</a>
+          <a href="pricing.html" class="text-[#F84B1D] font-bold transition-colors py-2">Pricing</a>
+          <a href="index.html#solution" class="text-zinc-300 hover:text-white transition-colors py-2">About Us</a>
+          <a href="index.html#testimonials" class="text-zinc-300 hover:text-white transition-colors py-2">Case Studies</a>
+        </nav>
+
+        <!-- Right Action Buttons -->
+        <div class="hidden sm:flex items-center gap-3">
+          <a href="index.html#faq" class="px-5 py-2 text-xs font-semibold tracking-wide text-zinc-300 bg-[#141418] hover:bg-[#1E1E24] border border-zinc-700/60 hover:border-zinc-500 rounded-full transition-all">
+            Careers
+          </a>
+          <a href="match-flow.html" class="px-6 py-2.5 text-xs font-bold tracking-wide text-white bg-[#F84B1D] hover:bg-[#E03E12] rounded-full shadow-lg shadow-[#F84B1D]/25 transition-all">
+            Book Call
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN PRICING SECTION ON CRISP WHITE CANVAS ================= -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 pb-20 sm:pb-28 w-full">
+    
+    <!-- Title: Simple, predictable cost (No Toggle) -->
+    <div class="text-center space-y-3 max-w-2xl mx-auto mb-12 sm:mb-16">
+      <h1 class="font-heading text-4xl sm:text-5xl lg:text-[56px] font-bold text-zinc-900 tracking-tight leading-tight">
+        Simple, predictable cost
+      </h1>
+      <p class="text-zinc-500 text-sm sm:text-base font-normal">
+        One flat, transparent monthly investment. No hidden fees, no placement costs.
+      </p>
+    </div>
+
+    <!-- 2-Column Cards Grid matching Figma Inspiration -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+      
+      <!-- ================= LEFT CARD: PRICING CARD ================= -->
+      <div class="lg:col-span-5 rounded-3xl p-7 sm:p-9 bg-[#141416] text-white border border-[#F84B1D]/30 shadow-2xl flex flex-col justify-between relative overflow-hidden">
+        <div class="space-y-6 relative z-10">
+          
+          <!-- Header -->
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-white">
+              <span class="text-[#F84B1D] text-lg">✦</span>
+              <h3 class="font-heading text-xl sm:text-2xl font-bold tracking-tight">Executive Assistant</h3>
+            </div>
+            <p class="text-zinc-400 text-xs sm:text-sm font-normal leading-relaxed">
+              Selective hiring, rigorous training. All handled by BackTech.
+            </p>
+          </div>
+
+          <!-- Divider -->
+          <div class="border-b border-zinc-800"></div>
+
+          <!-- Flat Price Display ($3,000 / per month) -->
+          <div class="flex items-baseline gap-2">
+            <span class="font-heading text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-white tracking-tight leading-none">
+              $3,000
+            </span>
+            <span class="text-zinc-400 font-medium text-sm sm:text-base">/ per month</span>
+          </div>
+
+          <!-- Primary CTA Button -->
+          <div>
+            <a href="match-flow.html" class="w-full py-4 px-6 rounded-xl bg-white hover:bg-[#F84B1D] text-zinc-950 hover:text-white font-heading font-bold text-sm sm:text-base tracking-wide transition-all shadow-md text-center block">
+              Find your EA match
+            </a>
+          </div>
+
+          <!-- Feature Checklist -->
+          <div class="space-y-3.5 pt-2">
+            <div class="flex items-start gap-3 text-xs sm:text-sm text-zinc-300">
+              <div class="w-5 h-5 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-xs">✓</div>
+              <span class="leading-snug">One dedicated, full-time EA</span>
+            </div>
+            <div class="flex items-start gap-3 text-xs sm:text-sm text-zinc-300">
+              <div class="w-5 h-5 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-xs">✓</div>
+              <span class="leading-snug">Vetted, trained, device equipped, and employed by BackTech</span>
+            </div>
+            <div class="flex items-start gap-3 text-xs sm:text-sm text-zinc-300">
+              <div class="w-5 h-5 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-xs">✓</div>
+              <span class="leading-snug">Algorithmic matching + tailored onboarding</span>
+            </div>
+            <div class="flex items-start gap-3 text-xs sm:text-sm text-zinc-300">
+              <div class="w-5 h-5 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-xs">✓</div>
+              <span class="leading-snug">EA performance management</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="pt-6 mt-6 border-t border-zinc-800 text-[11px] text-zinc-500 text-center">
+          Flat subscription &bull; No hidden fees &bull; 14-day free rematch
+        </div>
+      </div>
+
+      <!-- ================= RIGHT CARD: JACOB TINGEN CASE STUDY ================= -->
+      <div class="lg:col-span-7 rounded-3xl p-7 sm:p-10 bg-white border border-[#E5E0D8] shadow-xs flex flex-col justify-between text-left">
+        <div class="space-y-8">
+          
+          <!-- Founder Header -->
+          <div class="flex items-start gap-4 sm:gap-5 pb-6 border-b border-zinc-100">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-zinc-100 shadow-xs flex-shrink-0">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&auto=format&fit=crop&q=80" alt="Jacob Tingen" class="w-full h-full object-cover">
+            </div>
+            <div class="space-y-1">
+              <h3 class="font-heading font-bold text-xl sm:text-2xl text-zinc-900 tracking-tight leading-snug">
+                His first EA paid for herself.<br class="hidden sm:inline">
+                So he got a second one.
+              </h3>
+              <p class="text-zinc-500 text-xs sm:text-sm leading-relaxed">
+                Jacob Tingen increased revenue, reduced stress, and scaled his team with two executive assistants.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3 Metric Rows -->
+          <div class="space-y-6 sm:space-y-8">
+            <div class="flex items-center justify-between pb-6 border-b border-zinc-100">
+              <span class="text-sm sm:text-base font-semibold text-zinc-700">Increase in revenue</span>
+              <span class="font-heading text-3xl sm:text-5xl text-zinc-900 font-bold tracking-tight">$200k</span>
+            </div>
+
+            <div class="flex items-center justify-between pb-6 border-b border-zinc-100">
+              <span class="text-sm sm:text-base font-semibold text-zinc-700">New team members scaled</span>
+              <span class="font-heading text-3xl sm:text-5xl text-zinc-900 font-bold tracking-tight">16+</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-sm sm:text-base font-semibold text-zinc-700">BackTech Executive Assistants</span>
+              <span class="font-heading text-3xl sm:text-5xl text-zinc-900 font-bold tracking-tight">2</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="pt-6 mt-6 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500">
+          <span>Verified Founder Case Study</span>
+          <a href="match-flow.html" class="text-[#F84B1D] font-bold hover:underline flex items-center gap-1">
+            Read Full Story &rarr;
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= PRICING FAQS ACCORDION ================= -->
+    <section class="pt-24 sm:pt-28 space-y-10 max-w-3xl mx-auto">
+      <div class="text-center space-y-2">
+        <h2 class="font-heading text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-zinc-500 text-sm">
+          Clear answers to help you make an informed decision.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <div class="rounded-2xl border border-zinc-200/90 bg-white overflow-hidden shadow-xs p-5 sm:p-6 space-y-2">
+          <h4 class="font-bold text-sm sm:text-base text-zinc-900">Are there any setup fees or hidden costs?</h4>
+          <p class="text-xs sm:text-sm text-zinc-600 leading-relaxed">No. BackTech is a flat $3,000/month subscription. There are zero placement fees, zero onboarding fees, and zero hardware charges. Your subscription covers everything.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200/90 bg-white overflow-hidden shadow-xs p-5 sm:p-6 space-y-2">
+          <h4 class="font-bold text-sm sm:text-base text-zinc-900">Is there a long-term contract?</h4>
+          <p class="text-xs sm:text-sm text-zinc-600 leading-relaxed">No long-term lock-in. BackTech operates on a simple month-to-month subscription. You can cancel or pause anytime with 30 days notice.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200/90 bg-white overflow-hidden shadow-xs p-5 sm:p-6 space-y-2">
+          <h4 class="font-bold text-sm sm:text-base text-zinc-900">What if my EA isn't the right fit?</h4>
+          <p class="text-xs sm:text-sm text-zinc-600 leading-relaxed">We offer a 14-Day Free Rematch Guarantee. If the working dynamic isn't 100% aligned, our matching team immediately steps in and pairs you with a new pre-vetted EA.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= EXACT HOMEPAGE FOOTER ================= -->
+  <footer class="relative bg-[#000000] border-t border-zinc-800/80 pt-16 pb-10 overflow-hidden select-none">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      
+      <!-- Main Footer Columns matching Figma Image 4 -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 pb-14">
+        
+        <!-- Column 1: Brand Info & Tagline & Social Links -->
+        <div class="md:col-span-5 space-y-4">
+          <a href="index.html" class="inline-block">
+            <img src="/logo-white.png" alt="BackTech Logo" class="h-8 w-auto object-contain" onerror="this.onerror=null; this.src='BT-Logo White@3x.png';">
+          </a>
+          
+          <p class="text-zinc-400 text-xs sm:text-sm font-normal leading-relaxed max-w-sm">
+            We provide Founders and CEOs with fully managed, Top 1% Executive Assistants to buy back their time, scale operations, and focus on growth
+          </p>
+
+          <!-- Social Links Row -->
+          <div class="flex items-center gap-4 pt-2">
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" class="flex items-center gap-2 text-xs text-zinc-400 hover:text-white transition-colors">
+              <img src="/Asset 5.svg" alt="Facebook" class="w-4 h-4 opacity-80" onerror="this.style.display='none'">
+              <span>Facebook</span>
+            </a>
+
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" class="flex items-center gap-2 text-xs text-zinc-400 hover:text-white transition-colors">
+              <img src="/Asset 3.svg" alt="Instagram" class="w-4 h-4 opacity-80" onerror="this.style.display='none'">
+              <span>Instagram</span>
+            </a>
+
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" class="flex items-center gap-2 text-xs text-zinc-400 hover:text-white transition-colors">
+              <img src="/Asset 4.svg" alt="LinkedIn" class="w-4 h-4 opacity-80" onerror="this.style.display='none'">
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Company Links -->
+        <div class="md:col-span-2 space-y-3">
+          <h4 class="font-heading font-bold text-sm text-white tracking-wider">Company</h4>
+          <ul class="space-y-2 text-xs sm:text-sm text-zinc-400">
+            <li><a href="pricing.html" class="text-[#F84B1D] font-bold">Pricing</a></li>
+            <li><a href="index.html#solution" class="hover:text-[#F84B1D] transition-colors">About Us</a></li>
+            <li><a href="index.html#testimonials" class="hover:text-[#F84B1D] transition-colors">Case Studies</a></li>
+            <li><a href="index.html#faq" class="hover:text-[#F84B1D] transition-colors">Careers</a></li>
+            <li><a href="index.html#comparison" class="hover:text-[#F84B1D] transition-colors">Hiring Protocol</a></li>
+            <li><a href="index.html#faq" class="hover:text-[#F84B1D] transition-colors">Blog &amp; Resources</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Legal Links -->
+        <div class="md:col-span-2 space-y-3">
+          <h4 class="font-heading font-bold text-sm text-white tracking-wider">Legal</h4>
+          <ul class="space-y-2 text-xs sm:text-sm text-zinc-400">
+            <li><a href="index.html#security" class="hover:text-[#F84B1D] transition-colors">Terms &amp; Conditions</a></li>
+            <li><a href="index.html#security" class="hover:text-[#F84B1D] transition-colors">Privacy Policy</a></li>
+            <li><a href="match-flow.html" class="hover:text-[#F84B1D] transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact Links with Orange Icons -->
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-heading font-bold text-sm text-white tracking-wider">Contact</h4>
+          <ul class="space-y-3 text-xs sm:text-sm text-zinc-400">
+            <li>
+              <a href="tel:+15127616142" class="flex items-center gap-2.5 hover:text-white transition-colors">
+                <span class="text-[#F84B1D]">📞</span>
+                <span>+1 (512) 761-6142</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:sales@backtech.io" class="flex items-center gap-2.5 hover:text-white transition-colors">
+                <span class="text-[#F84B1D]">✉️</span>
+                <span>sales@backtech.io</span>
+              </a>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-[#F84B1D] mt-0.5">📍</span>
+              <span class="leading-relaxed">5900 Balcones Dr Ste 18391, Austin, TX 78731–4257</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Divider & Copyright + 1/1 Pill -->
+      <div class="pt-6 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+        <div>&copy; 2026 BackTech. All rights reserved.</div>
+        <div class="px-3 py-1 rounded-full bg-[#161619] border border-zinc-800 text-zinc-400 font-mono text-[11px]">1/1</div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --color-brand-orange: #F84B1D;
+    --color-brand-dark: #070709;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-brand-dark);
+    color: #E4E4E7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #070709;
+}
+::-webkit-scrollbar-thumb {
+  background: #232328;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F84B1D;
+}
+
+/* Authentic Website Background Texture from Brand Assets */
+.bg-brand-texture {
+  background-image: url('/Websitebg@3x-80.jpg');
+  background-repeat: repeat;
+  background-size: 800px auto;
+  background-attachment: fixed;
+}
+
+/* Fallback / Overlay Grain Texture */
+.bg-grain-texture {
+  background-image: radial-gradient(rgba(255, 77, 38, 0.035) 1px, transparent 0),
+                    radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 0);
+  background-size: 28px 28px, 14px 14px;
+  background-position: 0 0, 14px 14px;
+}
+
+/* Luxury Glow utilities */
+.glow-brand {
+  box-shadow: 0 0 50px -10px rgba(255, 77, 38, 0.35);
+}
+
+.glow-brand-sm {
+  box-shadow: 0 0 25px -5px rgba(255, 77, 38, 0.25);
+}
+
+.glow-brand-lg {
+  box-shadow: 0 0 100px -20px rgba(255, 77, 38, 0.3);
+}
+
+/* Framing boundary guide line for mockup alignment */
+.vertical-grid-guide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 77, 38, 0.2) 15%, rgba(255, 77, 38, 0.2) 85%, transparent);
+  pointer-events: none;
+}
+

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BackTech - Elite Executive Assistant Match Flow</title>
+  
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            heading: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              DEFAULT: '#F84B1D',
+              hover: '#E03E12',
+              light: '#FFF5F2',
+              border: 'rgba(248, 75, 29, 0.2)',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF8F5;
+      color: #18181B;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-heading {
+      font-family: 'Outfit', sans-serif;
+    }
+    .gauge-circle {
+      transition: stroke-dashoffset 0.35s ease-out;
+    }
+    .fade-in-slide {
+      animation: fadeInSlide 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeInSlide {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-[#F84B1D] selection:text-white">
+
+  <!-- ================= TOP HEADER BAR ================= -->
+  <header class="sticky top-0 z-30 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-zinc-200/80 py-3.5 px-4 sm:px-8">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      
+      <!-- Back Arrow & BackTech Logo -->
+      <div class="flex items-center gap-3 sm:gap-4">
+        <button
+          id="btn-back"
+          onclick="handleBack()"
+          class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#FFF4F0] hover:bg-[#FFE7DF] text-[#F84B1D] border border-[#F84B1D]/20 flex items-center justify-center transition-colors shadow-xs"
+          aria-label="Go back"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+        </button>
+
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-[#F84B1D] flex items-center justify-center text-white font-heading font-black text-base shadow-sm">
+            B
+          </div>
+          <span class="font-heading font-bold text-lg sm:text-xl text-zinc-900 tracking-tight">
+            Back<span class="text-[#F84B1D]">Tech</span>
+          </span>
+        </a>
+      </div>
+
+      <!-- Header Right: Mobile-Only Mini Indicator + Exit -->
+      <div class="flex items-center gap-3 sm:gap-4">
+        
+        <!-- Mobile Compact Progress Indicator in the bar -->
+        <div id="mobile-progress-pill" class="flex lg:hidden items-center gap-2 bg-white px-2.5 py-1.5 rounded-full border border-zinc-200/80 shadow-xs">
+          <div class="flex flex-col items-end leading-none">
+            <span id="mobile-step-text" class="text-[10px] font-bold text-zinc-900">1/9</span>
+            <span id="mobile-percent-text" class="text-[8px] font-semibold text-zinc-400">11%</span>
+          </div>
+          <div class="relative w-6 h-6 flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 transform -rotate-90" viewBox="0 0 32 32">
+              <circle cx="16" cy="16" r="13" class="text-zinc-100" stroke-width="2.5" stroke="currentColor" fill="transparent"></circle>
+              <circle id="mobile-gauge-arc" cx="16" cy="16" r="13" stroke-width="2.5" stroke-dasharray="81.68" stroke-dashoffset="72.69" stroke-linecap="round" stroke="#F84B1D" fill="transparent" class="gauge-circle"></circle>
+            </svg>
+          </div>
+        </div>
+
+        <a href="/" class="text-xs font-semibold text-zinc-500 hover:text-zinc-900 transition-colors px-2.5 sm:px-3 py-1.5 rounded-lg hover:bg-zinc-200/60">
+          Exit
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= MAIN QUESTIONNAIRE CONTAINER ================= -->
+  <main class="flex-1 flex items-center justify-center p-4 sm:p-8 my-auto">
+    <div class="w-full max-w-5xl mx-auto py-2 sm:py-6">
+      
+      <!-- Questionnaire View -->
+      <div id="questionnaire-view" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+        
+        <!-- Left Column: Question, Options & Input -->
+        <div class="lg:col-span-7 space-y-6 sm:space-y-7">
+          <div id="question-card" class="fade-in-slide space-y-5 sm:space-y-6">
+            
+            <!-- Step Badge & Question Title -->
+            <div class="space-y-2">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F2] border border-[#F84B1D]/20 text-[#F84B1D] text-[11px] font-bold uppercase tracking-wider mb-1">
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.3-6.2-4.6-6.2 4.6 2.3-7.3-6.1-4.5h7.6z"/>
+                </svg>
+                <span id="step-badge">Step 1 of 9</span>
+              </div>
+              <h1 id="question-title" class="font-heading text-2xl sm:text-3xl lg:text-[34px] font-bold text-zinc-900 leading-[1.25] tracking-tight">
+                What best describes your role
+              </h1>
+              <p id="question-subhead" class="text-zinc-500 text-sm sm:text-base font-normal leading-relaxed">
+                Tell us how you lead, and we’ll find the EA to handle the rest.
+              </p>
+            </div>
+
+            <!-- Dynamic Options Container -->
+            <div id="options-container" class="space-y-3 pt-1">
+              <!-- Rendered via JavaScript -->
+            </div>
+
+            <!-- Mobile-Only Engagement/Testimonial Placement -->
+            <div id="mobile-card-container" class="block lg:hidden pt-4">
+              <!-- Rendered via JavaScript -->
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right Column (Desktop Only): Gauge + Engagement / Testimonial in Engagement Space -->
+        <div class="hidden lg:flex lg:col-span-5 flex-col items-center space-y-6 pt-2 lg:pt-8">
+          
+          <!-- Gauge Block -->
+          <div class="text-center space-y-3">
+            <span class="text-[11px] font-bold tracking-[0.2em] text-zinc-400 uppercase block">
+              EA MATCH PROGRESS
+            </span>
+
+            <div class="relative w-36 h-36 mx-auto flex items-center justify-center select-none">
+              <svg class="w-36 h-36 transform -rotate-90" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="54" class="text-zinc-200" stroke-width="6" stroke="currentColor" fill="transparent"></circle>
+                <circle id="desktop-gauge-arc" cx="60" cy="60" r="54" stroke-width="6" stroke-dasharray="339.29" stroke-dashoffset="301.97" stroke-linecap="round" stroke="#F84B1D" fill="transparent" class="gauge-circle"></circle>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <span id="desktop-percent-text" class="font-heading font-extrabold text-2xl sm:text-3xl text-zinc-900 tracking-tight leading-none">
+                  11%
+                </span>
+                <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                  COMPLETE
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Engagement Space: Displays Engagement Card OR Testimonial Card -->
+          <div id="desktop-engagement-space" class="w-full max-w-md">
+            <!-- Rendered via JavaScript -->
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ================= STEP 10: MATCH COMPLETION VIEW ================= -->
+      <div id="completion-view" class="hidden fade-in-slide bg-white border border-zinc-200 rounded-3xl p-6 sm:p-10 shadow-lg space-y-8 text-center max-w-2xl mx-auto">
+        <div class="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center mx-auto shadow-xs">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+
+        <div class="space-y-2">
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#FFF5F2] text-[#F84B1D] border border-[#F84B1D]/20 text-xs font-bold uppercase tracking-wider">
+            Matches Found
+          </span>
+          <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-zinc-900 tracking-tight">
+            We've Found 3 Candidate Matches for <span id="summary-name">You</span>
+          </h2>
+          <p class="text-zinc-600 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+            Based on your leadership role at <strong id="summary-company" class="text-zinc-900">your company</strong>, our operations team is preparing your executive shortlist.
+          </p>
+        </div>
+
+        <!-- Pre-vetted EA Preview Card -->
+        <div class="bg-[#FBF9F5] border border-zinc-200 rounded-2xl p-5 text-left space-y-4 shadow-xs">
+          <div class="flex items-center justify-between border-b border-zinc-200 pb-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[#F84B1D] text-white font-heading font-black flex items-center justify-center">
+                BT
+              </div>
+              <div>
+                <h4 class="font-heading font-bold text-zinc-900 text-sm">Pre-Vetted BackTech EA #104</h4>
+                <p class="text-xs text-zinc-500">Executive Operations Specialist &middot; Top 1% Global</p>
+              </div>
+            </div>
+            <span class="text-[11px] font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full border border-emerald-300">
+              99.4% Fit
+            </span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-zinc-800">
+            <div class="p-2.5 rounded-xl bg-white border border-zinc-200">
+              <span class="text-zinc-400 block text-[10px] uppercase font-bold">Experience</span>
+              6+ Years EA
+            </div>
+            <div class="p-2.5 rounded-xl bg-white border border-zinc-200">
+              <span class="text-zinc-400 block text-[10px] uppercase font-bold">Specialty</span>
+              Inbox &amp; Calendar
+            </div>
+            <div class="p-2.5 rounded-xl bg-white border border-zinc-200 col-span-2 sm:col-span-1">
+              <span class="text-zinc-400 block text-[10px] uppercase font-bold">Software</span>
+              M365 &middot; G-Suite &middot; Notion
+            </div>
+          </div>
+        </div>
+
+        <!-- Schedule Discovery Call -->
+        <div class="p-6 rounded-2xl bg-[#FFF8F6] border border-[#F84B1D]/25 space-y-4 text-left">
+          <div>
+            <h3 class="font-heading font-bold text-lg text-zinc-900">
+              Step 2: Schedule Your 20-Min Match Review
+            </h3>
+            <p class="text-xs text-zinc-600 mt-1">
+              Pick a convenient time to walk through your candidate profiles with our matching director.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
+            <button onclick="alert('Booking confirmed! An invite has been sent to your email.')" class="p-3 rounded-xl bg-white hover:bg-[#F84B1D] hover:text-white border border-zinc-200 text-zinc-800 font-semibold text-xs transition-colors flex items-center justify-center gap-2 group shadow-xs">
+              <span>Tomorrow at 10:00 AM</span>
+            </button>
+            <button onclick="alert('Booking confirmed! An invite has been sent to your email.')" class="p-3 rounded-xl bg-white hover:bg-[#F84B1D] hover:text-white border border-zinc-200 text-zinc-800 font-semibold text-xs transition-colors flex items-center justify-center gap-2 group shadow-xs">
+              <span>Tomorrow at 2:30 PM</span>
+            </button>
+            <button onclick="alert('Booking confirmed! An invite has been sent to your email.')" class="p-3 rounded-xl bg-white hover:bg-[#F84B1D] hover:text-white border border-zinc-200 text-zinc-800 font-semibold text-xs transition-colors flex items-center justify-center gap-2 group shadow-xs">
+              <span>Next Day at 11:00 AM</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <a href="/" class="text-xs font-semibold text-zinc-500 hover:text-zinc-900 transition-colors">
+            Return to Homepage &rarr;
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="py-4 border-t border-zinc-200/80 bg-[#FAFAFA]">
+    <div class="max-w-5xl mx-auto px-4 text-center text-xs text-zinc-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <span>&copy; 2026 BackTech. All rights reserved.</span>
+      <div class="flex items-center gap-4">
+        <span>NDA Protected</span>
+        <span>&bull;</span>
+        <span>Top 1% Global Talent</span>
+        <span>&bull;</span>
+        <span>14-Day Rematch Guarantee</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT QUESTIONNAIRE ENGINE ================= -->
+  <script>
+    const questions = [
+      // Step 0: Question 1 (Has engagement line)
+      {
+        id: 'role',
+        type: 'single',
+        question: 'What best describes your role',
+        subhead: 'Tell us how you lead, and we’ll find the EA to handle the rest.',
+        options: [
+          'Entrepreneur/founder',
+          'Business owner',
+          'CEO/C-Suite',
+          'Other'
+        ],
+        engagement: "Four quick questions, then we'll show you what to hand off first.",
+        testimonial: null
+      },
+      // Step 1: Question 2 (Has engagement line)
+      {
+        id: 'firstEaExperience',
+        type: 'single',
+        question: 'Would this be your first EA, or have you hired one before?',
+        subhead: null,
+        options: [
+          'Never hired one',
+          "I have one now, but it's not working",
+          'Hired one before, no longer active',
+          'Currently have one, happy with them'
+        ],
+        engagement: 'However you answered, the next few questions shape exactly who you get matched with.',
+        testimonial: null
+      },
+      // Step 2: Question 3 (No engagement line -> Testimonial 1 in engagement space)
+      {
+        id: 'weekStructure',
+        type: 'single',
+        question: 'From an external perspective, how is your typical week structured?',
+        subhead: null,
+        options: [
+          'Constant firefighting, nothing feels caught up',
+          "Full plate, but I'm handling it",
+          'Things slipping through the cracks',
+          'Actually pretty manageable'
+        ],
+        engagement: null,
+        testimonial: {
+          quote: "I was hesitant to hire help, unsure of what to offload. Within two weeks, my BackTech EA took over scheduling, travel coordination, and weekly prep seamlessly.",
+          author: "Josh Hokit",
+          role: "Partner",
+          company: "Nextstar Solutions",
+          avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80"
+        }
+      },
+      // Step 3: Question 4 (No engagement line -> Testimonial 2 in engagement space)
+      {
+        id: 'handoffTasks',
+        type: 'multi',
+        question: 'If you could hand off one thing today, what would it be?',
+        subhead: 'Select as many as apply.',
+        options: [
+          'Being the one who has to remember everything',
+          "Owning follow-ups until they're actually closed out",
+          'Prepping and coordinating before big meetings or decisions',
+          'Managing vendors, contracts, and outside relationships',
+          "Keeping projects moving when you're not in the room",
+          'Honestly, most of it'
+        ],
+        engagement: null,
+        testimonial: {
+          quote: "I used to spend my Sunday nights prepping for the week. Now my EA has it handled before I open my laptop Monday.",
+          author: "Abid Hussain",
+          role: "Founder",
+          company: "TallyWise",
+          avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80"
+        }
+      },
+      // Step 4: Question 5 (Has engagement line)
+      {
+        id: 'notGettingDone',
+        type: 'single',
+        question: "What's actually not getting done because of all this?",
+        subhead: null,
+        options: [
+          'The strategic stuff keeps getting pushed to "next week"',
+          'Deals or growth work move slower than they should',
+          "I know I'm capable of more than this"
+        ],
+        engagement: 'None of this shows up on a calendar. It just quietly adds up.',
+        testimonial: null
+      },
+      // Step 5: Question 6 (No engagement line & no testimonial)
+      {
+        id: 'worthItReason',
+        type: 'single',
+        question: 'What would make this worth it',
+        subhead: null,
+        options: [
+          'Someone reliable',
+          'Can handle real complexity',
+          'Thinks ahead instead of waiting to be told',
+          'Backed by a real company'
+        ],
+        engagement: null,
+        testimonial: null
+      },
+      // Step 6: Question 7 (No engagement line & no testimonial)
+      {
+        id: 'hesitation',
+        type: 'single',
+        question: "what's making you hesitate?.",
+        subhead: null,
+        options: [
+          'Trusting someone with sensitive information',
+          'Not sure this fits the budget',
+          "Don't know what I'd even hand off",
+          'Burned by a VA or freelancer before'
+        ],
+        engagement: null,
+        testimonial: null
+      },
+      // Step 7: Question 8 (Has engagement line)
+      {
+        id: 'timeline',
+        type: 'single',
+        question: 'When do you want this off your plate?',
+        subhead: null,
+        options: [
+          'Yesterday, honestly',
+          'Within the month',
+          'Next quarter or so',
+          "Just seeing what's out there"
+        ],
+        engagement: "We'll move at your pace. Clients are matched within days",
+        testimonial: null
+      },
+      // Step 8: Question 9 (Has engagement line)
+      {
+        id: 'contact',
+        type: 'form',
+        question: 'Almost there.',
+        subhead: null,
+        engagement: "Next step, pick a time and we'll walk you through your first match.",
+        testimonial: null
+      }
+    ];
+
+    let currentStep = 0;
+    const totalQuestions = questions.length;
+    const formData = {
+      role: '',
+      firstEaExperience: '',
+      weekStructure: '',
+      handoffTasks: [],
+      notGettingDone: '',
+      worthItReason: '',
+      hesitation: '',
+      timeline: '',
+      firstName: '',
+      lastName: '',
+      companyName: '',
+      email: '',
+      phone: ''
+    };
+
+    function renderStep() {
+      const q = questions[currentStep];
+      const percent = Math.round(((currentStep + 1) / totalQuestions) * 100);
+
+      // 1. Update Badges & Titles
+      document.getElementById('step-badge').textContent = `Step ${currentStep + 1} of ${totalQuestions}`;
+      document.getElementById('question-title').textContent = q.question;
+      
+      const subheadEl = document.getElementById('question-subhead');
+      if (q.subhead) {
+        subheadEl.textContent = q.subhead;
+        subheadEl.classList.remove('hidden');
+      } else {
+        subheadEl.classList.add('hidden');
+      }
+
+      // 2. Update Gauges (Desktop & Mobile)
+      const desktopCircumference = 339.29;
+      const desktopOffset = desktopCircumference - (percent / 100) * desktopCircumference;
+      document.getElementById('desktop-gauge-arc').style.strokeDashoffset = desktopOffset;
+      document.getElementById('desktop-percent-text').textContent = `${percent}%`;
+
+      const mobileCircumference = 81.68;
+      const mobileOffset = mobileCircumference - (percent / 100) * mobileCircumference;
+      document.getElementById('mobile-gauge-arc').style.strokeDashoffset = mobileOffset;
+      document.getElementById('mobile-step-text').textContent = `${currentStep + 1}/${totalQuestions}`;
+      document.getElementById('mobile-percent-text').textContent = `${percent}%`;
+
+      // 3. Render Options
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+
+      if (q.type === 'single') {
+        q.options.forEach((opt, idx) => {
+          const isSelected = formData[q.id] === opt;
+          const optDiv = document.createElement('div');
+          optDiv.className = `p-4 sm:p-4.5 rounded-2xl border transition-all duration-150 flex items-center justify-between cursor-pointer select-none group ${
+            isSelected
+              ? 'bg-[#FFF5F2] border-[#F84B1D] shadow-sm ring-1 ring-[#F84B1D]/30'
+              : 'bg-white border-zinc-200/90 hover:border-zinc-300 hover:bg-zinc-50/70 hover:shadow-xs'
+          }`;
+          optDiv.onclick = () => handleSingleSelect(opt);
+          optDiv.innerHTML = `
+            <div class="flex items-center gap-3.5">
+              <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                isSelected ? 'border-[#F84B1D] bg-[#F84B1D]' : 'border-zinc-300 group-hover:border-[#F84B1D] bg-white'
+              }">
+                ${isSelected ? '<div class="w-2 h-2 rounded-full bg-white"></div>' : ''}
+              </div>
+              <span class="text-base sm:text-lg font-medium transition-colors ${
+                isSelected ? 'text-[#F84B1D] font-bold' : 'text-zinc-800 group-hover:text-zinc-950'
+              }">${opt}</span>
+            </div>
+            <span class="text-xs font-mono text-zinc-400 group-hover:text-zinc-600 bg-zinc-100 px-2 py-0.5 rounded-md">${idx + 1}</span>
+          `;
+          optionsContainer.appendChild(optDiv);
+        });
+
+        const tip = document.createElement('p');
+        tip.className = 'text-xs text-zinc-400 pt-1 flex items-center gap-1.5';
+        tip.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-[#F84B1D]"></span> Select an option to automatically proceed';
+        optionsContainer.appendChild(tip);
+
+      } else if (q.type === 'multi') {
+        q.options.forEach((opt) => {
+          const isSelected = formData.handoffTasks.includes(opt);
+          const optDiv = document.createElement('div');
+          optDiv.className = `p-4 sm:p-4 rounded-2xl border transition-all duration-150 flex items-center justify-between cursor-pointer select-none group ${
+            isSelected
+              ? 'bg-[#FFF5F2] border-[#F84B1D] shadow-sm ring-1 ring-[#F84B1D]/30'
+              : 'bg-white border-zinc-200/90 hover:border-zinc-300 hover:bg-zinc-50/70 hover:shadow-xs'
+          }`;
+          optDiv.onclick = () => handleMultiToggle(opt);
+          optDiv.innerHTML = `
+            <div class="flex items-center gap-3.5">
+              <div class="w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                isSelected ? 'border-[#F84B1D] bg-[#F84B1D]' : 'border-zinc-300 group-hover:border-[#F84B1D] bg-white'
+              }">
+                ${isSelected ? '<svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>' : ''}
+              </div>
+              <span class="text-base sm:text-lg font-medium transition-colors ${
+                isSelected ? 'text-[#F84B1D] font-bold' : 'text-zinc-800 group-hover:text-zinc-950'
+              }">${opt}</span>
+            </div>
+          `;
+          optionsContainer.appendChild(optDiv);
+        });
+
+        const hasSelected = formData.handoffTasks.length > 0;
+        const btnContainer = document.createElement('div');
+        btnContainer.className = 'pt-3';
+        btnContainer.innerHTML = `
+          <button
+            onclick="handleNext()"
+            ${!hasSelected ? 'disabled' : ''}
+            class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-heading font-bold text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md ${
+              hasSelected
+                ? 'bg-[#F84B1D] hover:bg-[#E03E12] text-white cursor-pointer shadow-[#F84B1D]/25'
+                : 'bg-zinc-200 text-zinc-400 cursor-not-allowed border border-zinc-300'
+            }"
+          >
+            <span>Continue</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        `;
+        optionsContainer.appendChild(btnContainer);
+
+      } else if (q.type === 'form') {
+        const formDiv = document.createElement('form');
+        formDiv.onsubmit = (e) => { e.preventDefault(); handleNext(); };
+        formDiv.className = 'space-y-4 pt-1';
+        formDiv.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div>
+              <label class="block text-xs font-bold text-zinc-700 mb-1.5">First Name *</label>
+              <input type="text" required placeholder="e.g. David" value="${formData.firstName}" oninput="formData.firstName = this.value" class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-[#F84B1D] focus:ring-2 focus:ring-[#F84B1D]/10" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-zinc-700 mb-1.5">Last Name *</label>
+              <input type="text" required placeholder="e.g. Miller" value="${formData.lastName}" oninput="formData.lastName = this.value" class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-[#F84B1D] focus:ring-2 focus:ring-[#F84B1D]/10" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-zinc-700 mb-1.5">Company Name *</label>
+            <input type="text" required placeholder="e.g. Apex Ventures" value="${formData.companyName}" oninput="formData.companyName = this.value" class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-[#F84B1D] focus:ring-2 focus:ring-[#F84B1D]/10" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-zinc-700 mb-1.5">Work Email *</label>
+            <input type="email" required placeholder="david@apexventures.com" value="${formData.email}" oninput="formData.email = this.value" class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-[#F84B1D] focus:ring-2 focus:ring-[#F84B1D]/10" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-zinc-700 mb-1.5">Phone Number *</label>
+            <input type="tel" required placeholder="+1 (555) 019-2834" value="${formData.phone}" oninput="formData.phone = this.value" class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-[#F84B1D] focus:ring-2 focus:ring-[#F84B1D]/10" />
+          </div>
+          <div class="pt-2">
+            <button type="submit" class="w-full py-4 px-6 rounded-2xl bg-[#F84B1D] hover:bg-[#E03E12] text-white font-heading font-bold text-sm sm:text-base uppercase tracking-wider shadow-xl shadow-[#F84B1D]/30 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+              <span>Get Matched with your EA Now</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+        `;
+        optionsContainer.appendChild(formDiv);
+      }
+
+      // 4. Render Desktop Engagement Space (Engagement Card OR Testimonial in this exact space)
+      const desktopSpace = document.getElementById('desktop-engagement-space');
+      desktopSpace.innerHTML = '';
+
+      if (q.engagement) {
+        desktopSpace.innerHTML = `
+          <div class="w-full bg-white border border-zinc-200/90 rounded-3xl p-7 sm:p-8 text-center shadow-sm space-y-3">
+            <div class="w-8 h-8 rounded-full bg-[#FFF5F2] border border-[#F84B1D]/20 text-[#F84B1D] flex items-center justify-center mx-auto">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.3-6.2-4.6-6.2 4.6 2.3-7.3-6.1-4.5h7.6z"/></svg>
+            </div>
+            <p class="text-base sm:text-lg font-semibold text-zinc-800 leading-relaxed">${q.engagement}</p>
+          </div>
+        `;
+      } else if (q.testimonial && !q.engagement) {
+        desktopSpace.innerHTML = `
+          <div class="w-full bg-[#FFF8F6] border border-[#F84B1D]/25 rounded-3xl p-6 sm:p-7 text-center shadow-sm space-y-4">
+            <div class="w-9 h-9 rounded-full bg-[#FFF0EB] text-[#F84B1D] border border-[#F84B1D]/30 flex items-center justify-center mx-auto">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            </div>
+            <p class="text-sm sm:text-base text-zinc-700 italic font-normal leading-relaxed">&ldquo;${q.testimonial.quote}&rdquo;</p>
+            <div class="flex flex-col items-center justify-center gap-1 pt-1">
+              <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-[#F84B1D]/30 shadow-xs">
+                <img src="${q.testimonial.avatar}" alt="${q.testimonial.author}" class="w-full h-full object-cover" />
+              </div>
+              <div>
+                <h4 class="font-heading font-bold text-sm sm:text-base text-zinc-900">${q.testimonial.author}</h4>
+                <p class="text-xs text-zinc-500">${q.testimonial.role}, <span class="text-[#F84B1D] font-bold">${q.testimonial.company}</span></p>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // 5. Render Mobile Card
+      const mobileCard = document.getElementById('mobile-card-container');
+      mobileCard.innerHTML = '';
+      if (q.engagement) {
+        mobileCard.innerHTML = `
+          <div class="bg-white border border-zinc-200/90 rounded-2xl p-5 text-center shadow-xs space-y-2">
+            <div class="w-7 h-7 rounded-full bg-[#FFF5F2] border border-[#F84B1D]/20 text-[#F84B1D] flex items-center justify-center mx-auto">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.3-6.2-4.6-6.2 4.6 2.3-7.3-6.1-4.5h7.6z"/></svg>
+            </div>
+            <p class="text-sm font-semibold text-zinc-800 leading-relaxed">${q.engagement}</p>
+          </div>
+        `;
+      } else if (q.testimonial && !q.engagement) {
+        mobileCard.innerHTML = `
+          <div class="p-5 rounded-2xl bg-[#FFF8F6] border border-[#F84B1D]/25 text-center space-y-3 shadow-xs">
+            <div class="w-7 h-7 rounded-full bg-[#FFF0EB] text-[#F84B1D] border border-[#F84B1D]/30 flex items-center justify-center mx-auto">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            </div>
+            <p class="text-xs sm:text-sm text-zinc-700 italic font-normal leading-relaxed">&ldquo;${q.testimonial.quote}&rdquo;</p>
+            <div class="flex flex-col items-center justify-center gap-1 pt-0.5">
+              <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-[#F84B1D]/30 shadow-xs">
+                <img src="${q.testimonial.avatar}" alt="${q.testimonial.author}" class="w-full h-full object-cover" />
+              </div>
+              <div>
+                <h4 class="font-heading font-bold text-xs sm:text-sm text-zinc-900">${q.testimonial.author}</h4>
+                <p class="text-[10px] text-zinc-500">${q.testimonial.role}, <span class="text-[#F84B1D] font-bold">${q.testimonial.company}</span></p>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function handleSingleSelect(option) {
+      const q = questions[currentStep];
+      formData[q.id] = option;
+      renderStep();
+
+      setTimeout(() => {
+        if (currentStep < totalQuestions - 1) {
+          currentStep++;
+          renderStep();
+        }
+      }, 220);
+    }
+
+    function handleMultiToggle(option) {
+      if (option === 'Honestly, most of it') {
+        if (formData.handoffTasks.includes(option)) {
+          formData.handoffTasks = [];
+        } else {
+          formData.handoffTasks = [option];
+        }
+      } else {
+        formData.handoffTasks = formData.handoffTasks.filter(item => item !== 'Honestly, most of it');
+        const idx = formData.handoffTasks.indexOf(option);
+        if (idx > -1) {
+          formData.handoffTasks.splice(idx, 1);
+        } else {
+          formData.handoffTasks.push(option);
+        }
+      }
+      renderStep();
+    }
+
+    function handleNext() {
+      if (currentStep < totalQuestions - 1) {
+        currentStep++;
+        renderStep();
+      } else {
+        // Completion
+        document.getElementById('questionnaire-view').classList.add('hidden');
+        document.getElementById('mobile-progress-pill').classList.add('hidden');
+        document.getElementById('completion-view').classList.remove('hidden');
+        document.getElementById('summary-name').textContent = formData.firstName || 'You';
+        document.getElementById('summary-company').textContent = formData.companyName || 'your company';
+
+        try {
+          confetti({
+            particleCount: 100,
+            spread: 80,
+            origin: { y: 0.5 },
+            colors: ['#F84B1D', '#111827', '#FF8A65', '#FFFFFF']
+          });
+        } catch (e) {}
+      }
+    }
+
+    function handleBack() {
+      if (currentStep > 0) {
+        currentStep--;
+        renderStep();
+      } else {
+        window.location.href = '/';
+      }
+    }
+
+    // Keyboard Shortcuts (1-9)
+    window.addEventListener('keydown', (e) => {
+      const q = questions[currentStep];
+      if (q && q.type === 'single') {
+        const num = parseInt(e.key, 10);
+        if (num >= 1 && num <= q.options.length) {
+          handleSingleSelect(q.options[num - 1]);
+        }
+      }
+    });
+
+    // Initialize on page load
+    renderStep();
+  </script>
+</body>
+</html>

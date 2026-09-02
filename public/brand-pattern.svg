@@ -1,0 +1,79 @@
+<svg viewBox="0 0 340 380" fill="none" xmlns="http://www.w3.org/2000/svg" className="brand-pattern-svg">
+  <defs>
+    <clipPath id="top-left-capsule">
+      <rect x="0" y="0" width="165" height="82" rx="41" />
+    </clipPath>
+    <clipPath id="top-right-capsule">
+      <rect x="175" y="0" width="165" height="82" rx="41" />
+    </clipPath>
+    <clipPath id="mid-left-capsule">
+      <rect x="0" y="94" width="232" height="82" rx="41" />
+    </clipPath>
+    <clipPath id="mid-right-arch">
+      <rect x="248" y="94" width="92" height="148" rx="46" />
+    </clipPath>
+    <clipPath id="bot-left-arch">
+      <rect x="0" y="188" width="92" height="148" rx="46" />
+    </clipPath>
+    <clipPath id="bot-right-capsule">
+      <rect x="108" y="254" width="232" height="82" rx="41" />
+    </clipPath>
+  </defs>
+
+  {/* 1. TOP LEFT HORIZONTAL CAPSULE */}
+  <g clipPath="url(#top-left-capsule)">
+    <rect x="0" y="0" width="165" height="82" rx="41" fill="#FF4D26" />
+    <path d="M41 15C26.64 15 15 26.64 15 41C15 55.36 26.64 67 41 67V15Z" fill="#FFFFFF" />
+    <path d="M52 15C66.36 15 78 26.64 78 41C78 55.36 66.36 67 52 67V15Z" fill="#0A0A0C" />
+    <circle cx="124" cy="41" r="26" fill="#FFFFFF" />
+  </g>
+
+  {/* 2. TOP RIGHT HORIZONTAL CAPSULE */}
+  <g clipPath="url(#top-right-capsule)">
+    <rect x="175" y="0" width="165" height="82" rx="41" fill="#FF4D26" />
+    <circle cx="216" cy="41" r="26" fill="#0A0A0C" />
+    <circle cx="216" cy="41" r="13" fill="#FF4D26" />
+    <path d="M260 15C274.36 15 286 26.64 286 41C286 55.36 274.36 67 260 67V15Z" fill="#0A0A0C" />
+    <path d="M325 15C310.64 15 299 26.64 299 41C299 55.36 310.64 67 325 67V15Z" fill="#0A0A0C" />
+  </g>
+
+  {/* 3. MIDDLE LEFT HORIZONTAL CAPSULE */}
+  <g clipPath="url(#mid-left-capsule)">
+    <rect x="0" y="94" width="232" height="82" rx="41" fill="#FF4D26" />
+    <circle cx="41" cy="135" r="26" fill="#FFFFFF" />
+    <circle cx="116" cy="135" r="26" fill="#0A0A0C" />
+    <circle cx="116" cy="135" r="13" fill="#FF4D26" />
+    <circle cx="191" cy="135" r="26" fill="#FFFFFF" />
+  </g>
+
+  {/* 4. MIDDLE RIGHT VERTICAL ARCH */}
+  <g clipPath="url(#mid-right-arch)">
+    <rect x="248" y="94" width="92" height="148" rx="46" fill="#FF4D26" />
+    <circle cx="294" cy="140" r="26" fill="#FFFFFF" />
+    <path d="M268 172C268 186.36 279.64 198 294 198C308.36 198 320 186.36 320 172H268Z" fill="#0A0A0C" />
+    <path d="M268 230C268 244.36 279.64 256 294 256C308.36 256 320 244.36 320 230H268Z" fill="#FFFFFF" />
+  </g>
+
+  {/* 5. CENTER FREESTANDING ELEMENTS */}
+  <circle cx="129" cy="214" r="29" fill="#FF4D26" />
+  <path d="M203 185C219.016 185 232 197.984 232 214C232 230.016 219.016 243 203 243V185Z" fill="#FF4D26" />
+
+  {/* 6. BOTTOM LEFT VERTICAL ARCH */}
+  <g clipPath="url(#bot-left-arch)">
+    <rect x="0" y="188" width="92" height="148" rx="46" fill="#FF4D26" />
+    <circle cx="46" cy="234" r="26" fill="#FFFFFF" />
+    <path d="M20 266C20 280.36 31.64 292 46 292C60.36 292 72 280.36 72 266H20Z" fill="#0A0A0C" />
+    <path d="M20 324C20 338.36 31.64 350 46 350C60.36 350 72 338.36 72 324H20Z" fill="#FFFFFF" />
+  </g>
+
+  {/* 7. BOTTOM RIGHT HORIZONTAL CAPSULE */}
+  <g clipPath="url(#bot-right-capsule)">
+    <rect x="108" y="254" width="232" height="82" rx="41" fill="#FF4D26" />
+    <circle cx="149" cy="295" r="26" fill="#0A0A0C" />
+    <circle cx="149" cy="295" r="13" fill="#FF4D26" />
+    <path d="M211 269C196.64 269 185 280.64 185 295C185 309.36 196.64 321 211 321V269Z" fill="#FFFFFF" />
+    <path d="M225 269C239.36 269 251 280.64 251 295C251 309.36 239.36 321 225 321V269Z" fill="#FFFFFF" />
+    <circle cx="295" cy="295" r="26" fill="#0A0A0C" />
+    <circle cx="295" cy="295" r="13" fill="#FF4D26" />
+  </g>
+</svg>
