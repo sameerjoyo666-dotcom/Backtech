@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import { Menu, X, Phone, Mail } from 'lucide-react';
 
 export default function Navbar({ onOpenBooking, activePage = 'home' }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -14,12 +16,21 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
     }
   }, [mobileMenuOpen]);
 
-  const navLinks = [
-    { name: 'Home', href: '/', active: activePage === 'home' },
-    { name: 'Pricing', href: '/pricing', active: activePage === 'pricing' },
-    { name: 'About Us', href: '/#solution', active: false },
-    { name: 'Case Studies', href: '/#testimonials', active: false },
-  ];
+  const isPricing = location.pathname === '/pricing' || activePage === 'pricing';
+  const isHome = location.pathname === '/' && activePage !== 'pricing';
+
+  const handleSectionClick = (e, sectionId) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate(`/#${sectionId}`);
+    } else {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#08080A] border-b border-zinc-800/80 shadow-2xl py-3.5 sm:py-4 transition-all duration-200">
@@ -27,41 +38,68 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
         <div className="flex items-center justify-between">
           
           {/* Logo */}
-          <a
-            href="/"
+          <Link
+            to="/"
+            onClick={() => {
+              if (location.pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F84B1D] rounded-lg"
           >
             <Logo className="h-7 sm:h-8" />
-          </a>
+          </Link>
 
-          {/* Desktop Navigation Links (Exact Figma List) */}
+          {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-9 text-sm font-medium">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`transition-colors py-2 ${
-                  link.active
-                    ? 'text-[#F84B1D] font-bold'
-                    : 'text-zinc-300 hover:text-white'
-                }`}
-              >
-                {link.name}
-              </a>
-            ))}
+            <Link
+              to="/"
+              onClick={() => {
+                if (location.pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`transition-colors py-2 cursor-pointer ${
+                isHome ? 'text-[#F84B1D] font-bold' : 'text-zinc-300 hover:text-white'
+              }`}
+            >
+              Home
+            </Link>
+
+            <Link
+              to="/pricing"
+              className={`transition-colors py-2 cursor-pointer ${
+                isPricing ? 'text-[#F84B1D] font-bold' : 'text-zinc-300 hover:text-white'
+              }`}
+            >
+              Pricing
+            </Link>
+
+            <a
+              href="/#solution"
+              onClick={(e) => handleSectionClick(e, 'solution')}
+              className="transition-colors py-2 text-zinc-300 hover:text-white cursor-pointer"
+            >
+              About Us
+            </a>
+
+            <a
+              href="/#testimonials"
+              onClick={(e) => handleSectionClick(e, 'testimonials')}
+              className="transition-colors py-2 text-zinc-300 hover:text-white cursor-pointer"
+            >
+              Case Studies
+            </a>
           </nav>
 
           {/* Right Action Buttons */}
           <div className="hidden sm:flex items-center gap-3">
             <a
               href="#faq"
-              className="px-5 py-2 text-xs font-semibold tracking-wide text-zinc-300 bg-[#141418] hover:bg-[#1E1E24] border border-zinc-700/60 hover:border-zinc-500 rounded-full transition-all duration-200"
+              onClick={(e) => handleSectionClick(e, 'faq')}
+              className="px-5 py-2 text-xs font-semibold tracking-wide text-zinc-300 bg-[#141418] hover:bg-[#1E1E24] border border-zinc-700/60 hover:border-zinc-500 rounded-full transition-all duration-200 cursor-pointer"
             >
               Careers
             </a>
             <button
               onClick={onOpenBooking}
-              className="px-6 py-2.5 text-xs font-bold tracking-wide text-white bg-[#F84B1D] hover:bg-[#E03E12] rounded-full shadow-lg shadow-[#F84B1D]/25 hover:shadow-[#F84B1D]/45 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0"
+              className="px-6 py-2.5 text-xs font-bold tracking-wide text-white bg-[#F84B1D] hover:bg-[#E03E12] rounded-full shadow-lg shadow-[#F84B1D]/25 hover:shadow-[#F84B1D]/45 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
               Book Call
             </button>
@@ -83,19 +121,52 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
         <div className="fixed inset-0 top-[60px] sm:top-[68px] z-40 bg-[#08080A]/95 backdrop-blur-2xl px-6 py-8 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-top-4 duration-200">
           <div className="space-y-6">
             <nav className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                <div key={link.name} className="border-b border-zinc-800/80 pb-3">
-                  <a
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`text-lg font-semibold block ${
-                      link.active ? 'text-[#F84B1D]' : 'text-zinc-200'
-                    }`}
-                  >
-                    {link.name}
-                  </a>
-                </div>
-              ))}
+              <div className="border-b border-zinc-800/80 pb-3">
+                <Link
+                  to="/"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    if (location.pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className={`text-lg font-semibold block ${
+                    isHome ? 'text-[#F84B1D]' : 'text-zinc-200'
+                  }`}
+                >
+                  Home
+                </Link>
+              </div>
+
+              <div className="border-b border-zinc-800/80 pb-3">
+                <Link
+                  to="/pricing"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`text-lg font-semibold block ${
+                    isPricing ? 'text-[#F84B1D]' : 'text-zinc-200'
+                  }`}
+                >
+                  Pricing
+                </Link>
+              </div>
+
+              <div className="border-b border-zinc-800/80 pb-3">
+                <a
+                  href="/#solution"
+                  onClick={(e) => handleSectionClick(e, 'solution')}
+                  className="text-lg font-semibold block text-zinc-200"
+                >
+                  About Us
+                </a>
+              </div>
+
+              <div className="border-b border-zinc-800/80 pb-3">
+                <a
+                  href="/#testimonials"
+                  onClick={(e) => handleSectionClick(e, 'testimonials')}
+                  className="text-lg font-semibold block text-zinc-200"
+                >
+                  Case Studies
+                </a>
+              </div>
             </nav>
 
             <div className="p-4 rounded-2xl bg-[#121216] border border-zinc-800 space-y-2">
@@ -118,7 +189,7 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
           <div className="pt-6 border-t border-zinc-800 space-y-3">
             <a
               href="#faq"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => handleSectionClick(e, 'faq')}
               className="w-full block text-center py-3 text-xs font-semibold tracking-wider text-zinc-200 bg-[#161619] rounded-full border border-zinc-700"
             >
               Careers
@@ -138,3 +209,4 @@ export default function Navbar({ onOpenBooking, activePage = 'home' }) {
     </header>
   );
 }
+

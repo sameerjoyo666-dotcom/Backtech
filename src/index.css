@@ -10,6 +10,13 @@
 
   html {
     scroll-behavior: smooth;
+    zoom: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    html {
+      zoom: 1;
+    }
   }
 
   body {
