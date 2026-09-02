@@ -161,11 +161,7 @@ export default function FaqSection({ onOpenBooking, theme = 'dark' }) {
   return (
     <section 
       id="faq" 
-      className={`py-20 sm:py-28 relative ${
-        isDark 
-          ? 'bg-[#09090C] border-t border-zinc-800/80 bg-grain-texture' 
-          : 'bg-transparent'
-      }`}
+      className="py-20 sm:py-28 relative bg-bg-surface border-y border-border-color"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
         

@@ -16,7 +16,7 @@ export default function MarketRateSection({ onOpenBooking }) {
   ];
 
   return (
-    <section className="py-20 sm:py-28 relative bg-[#08080A] border-t border-zinc-800/80 bg-grain-texture">
+    <section className="py-20 sm:py-28 relative bg-bg-alt border-y border-border-color">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
         
         {/* Section Header Banner */}

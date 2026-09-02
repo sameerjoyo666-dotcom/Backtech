@@ -73,21 +73,16 @@ export default function TestimonialsSection({ onOpenBooking }) {
   };
 
   return (
-    <section id="testimonials" className="py-20 sm:py-28 relative bg-[#08080A] border-t border-zinc-800/80 overflow-hidden">
+    <section id="testimonials" className="py-20 sm:py-28 relative bg-bg-alt border-y border-border-color overflow-hidden">
       
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[1000px] h-[400px] sm:h-[500px] bg-[#F84B1D]/6 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 space-y-12 sm:space-y-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 space-y-10 sm:space-y-14">
         
         {/* ================= SECTION HEADER ================= */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 sm:space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F84B1D]/10 border border-[#F84B1D]/30 text-[#F84B1D] text-xs sm:text-sm font-semibold">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>What Employers Say</span>
-            </div>
-
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               We Could Say We're Great,{' '}
               <span className="text-[#F84B1D]">But Our Clients Already Did.</span>
@@ -117,16 +112,12 @@ export default function TestimonialsSection({ onOpenBooking }) {
           </div>
         </div>
 
-        {/* ================= CAROUSEL DECK (INFINITE LOOP TRACK) ================= */}
+        {/* ================= CAROUSEL DECK (NO SIDE FADES, CLEAN CARDS) ================= */}
         <div 
           className="relative w-full -mx-4 px-4 sm:mx-0 sm:px-0"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Subtle gradient edge fade masks */}
-          <div className="hidden lg:block absolute top-0 left-0 bottom-0 w-16 bg-gradient-to-r from-[#08080A] to-transparent z-10 pointer-events-none testimonial-marquee-fade-left" />
-          <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-[#08080A] to-transparent z-10 pointer-events-none testimonial-marquee-fade-right" />
-
           {/* Scrolling Track: Continuous Infinite Loop with Marquee or Horizontal Scroll */}
           <div 
             ref={scrollContainerRef}
@@ -136,25 +127,23 @@ export default function TestimonialsSection({ onOpenBooking }) {
             {[...testimonials, ...testimonials].map((item, idx) => (
               <div
                 key={`${item.id}-${idx}`}
-                className="w-[300px] sm:w-[380px] lg:w-[410px] flex-shrink-0 snap-center rounded-[32px] overflow-hidden bg-[#121216] border border-zinc-800 hover:border-zinc-700/80 shadow-2xl transition-all duration-300 group hover:-translate-y-1.5 flex flex-col justify-between"
+                className="w-[300px] sm:w-[380px] lg:w-[420px] flex-shrink-0 snap-center rounded-[28px] overflow-hidden bg-[#121216] border border-zinc-800 hover:border-zinc-700/80 shadow-2xl transition-all duration-300 group hover:-translate-y-1 flex flex-col justify-between"
                 style={{
                   boxShadow: '0 20px 40px -15px rgba(0,0,0,0.5)'
                 }}
               >
                 
-                {/* 1. TOP CASE STUDY BANNER (COMPLETELY CLEAN - ZERO TAGS OVER IMAGE) */}
-                <div className="relative w-full aspect-[16/10] overflow-hidden bg-[#0A0A0C]">
+                {/* 1. TOP CASE STUDY BANNER (CLEAN & UNCUT - 16:9 FULL VIEW WITHOUT OVERLAYS) */}
+                <div className="relative w-full bg-[#0A0A0C] border-b border-zinc-800/80 overflow-hidden">
                   <img
                     src={item.banner}
                     alt={`${item.company} Banner`}
-                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700"
+                    className="w-full h-auto object-contain block group-hover:scale-102 transition-transform duration-500"
                   />
-                  {/* Smooth bottom gradient overlay blending seamlessly into card body */}
-                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#121216] via-[#121216]/60 to-transparent pointer-events-none testimonial-card-gradient" />
                 </div>
 
                 {/* 2. CARD LOWER BODY (Typography & Testimonial Quote) */}
-                <div className="p-6 sm:p-7 pt-1 flex-1 flex flex-col justify-between space-y-6">
+                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-6">
                   
                   <div className="space-y-4">
                     {/* 5 Stars Rating */}
@@ -165,43 +154,19 @@ export default function TestimonialsSection({ onOpenBooking }) {
                     </div>
 
                     {/* Bold Testimonial Quote */}
-                    <p className="font-heading font-bold text-base sm:text-lg lg:text-[19px] text-white leading-snug tracking-tight">
+                    <p className="font-heading font-medium text-sm sm:text-base lg:text-[17px] text-white leading-relaxed tracking-normal">
                       &ldquo;{item.quote}&rdquo;
                     </p>
                   </div>
 
-                  {/* 3. CARD FOOTER META ROW (Reference Design Style) */}
-                  <div className="pt-4 border-t border-zinc-800/80 flex items-center justify-between gap-3">
-                    
-                    {/* Left: Square Pill Badge with Initials (like DEC 12 TUE in reference) */}
-                    <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-2xl bg-[#1A1A20] border border-zinc-700/70 flex flex-col items-center justify-center text-center flex-shrink-0 shadow-inner">
-                        <span className="text-[9px] font-bold text-[#F84B1D] tracking-widest leading-none">
-                          {item.badgeTitle}
-                        </span>
-                        <span className="font-heading font-extrabold text-xs text-white leading-tight">
-                          {item.initials}
-                        </span>
-                      </div>
-
-                      {/* Middle: Author Name & Company */}
-                      <div>
-                        <h4 className="font-heading font-bold text-sm text-white leading-tight">
-                          {item.author}
-                        </h4>
-                        <p className="text-xs text-zinc-400 mt-0.5 leading-tight">
-                          {item.role}, <span className="text-zinc-300 font-semibold">{item.company}</span>
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Right: Key Result Metric */}
-                    <div className="text-right flex-shrink-0">
-                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#1A1A20] text-emerald-400 border border-emerald-500/30">
-                        {item.stat}
-                      </span>
-                    </div>
-
+                  {/* 3. CARD FOOTER: ONLY NAME & DESIGNATION (NO PROFILE PIC, NO METRIC TAGS) */}
+                  <div className="pt-4 border-t border-zinc-800/80">
+                    <h4 className="font-heading font-bold text-sm sm:text-base text-white leading-tight">
+                      {item.author}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-zinc-400 mt-1 leading-tight">
+                      {item.role}, <span className="text-zinc-200 font-medium">{item.company}</span>
+                    </p>
                   </div>
 
                 </div>
@@ -219,7 +184,7 @@ export default function TestimonialsSection({ onOpenBooking }) {
         </div>
 
         {/* ================= 3. HIGH-CONVERSION CTA & TRUST PROOF ================= */}
-        <div className="text-center pt-6 space-y-6">
+        <div className="text-center pt-4 space-y-6">
           <button
             onClick={onOpenBooking}
             className="inline-flex items-center gap-2.5 px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-[#F84B1D] hover:bg-[#E03E12] text-white font-heading font-bold text-xs sm:text-sm uppercase tracking-wider shadow-2xl shadow-[#F84B1D]/40 transition-all transform hover:-translate-y-0.5 cursor-pointer"

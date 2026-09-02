@@ -8,7 +8,7 @@ export default function CloserSection({ onOpenBooking }) {
   const handleBooking = typeof onOpenBooking === 'function' ? onOpenBooking : () => navigate('/match');
 
   return (
-    <section className="py-24 relative bg-[#08080A] border-t border-zinc-800/80 overflow-hidden bg-grain-texture w-full">
+    <section className="py-24 relative bg-bg-page border-t border-border-color overflow-hidden w-full">
       
       {/* Background orange glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#F84B1D]/12 rounded-full blur-[160px] pointer-events-none" />

@@ -5,7 +5,33 @@
     --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --color-brand-orange: #F84B1D;
-    --color-brand-dark: #070709;
+    --color-brand-dark: #06080F;
+
+    /* Theme Tokens directly from Backtech.io (Dark Mode Default) */
+    --bg-page: #06080F;
+    --bg-surface: #0B0E17;
+    --bg-alt: #101423;
+    --bg-elevated: #151A2E;
+    --bg-card: #0B0E17;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-subtle: rgba(255, 255, 255, 0.04);
+    --text-main: #D4D4D8;
+    --text-heading: #FAFAFA;
+    --text-muted: #A1A1AA;
+  }
+
+  html.light {
+    /* Theme Tokens directly from Backtech.io (Light Mode) */
+    --bg-page: #FDFDFD;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F4F5F7;
+    --bg-elevated: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --border-color: rgba(9, 9, 11, 0.08);
+    --border-subtle: rgba(9, 9, 11, 0.04);
+    --text-main: #3F3F46;
+    --text-heading: #09090B;
+    --text-muted: #71717A;
   }
 
   html {
@@ -21,8 +47,8 @@
 
   body {
     font-family: var(--font-body);
-    background-color: var(--color-brand-dark);
-    color: #E4E4E7;
+    background-color: var(--bg-page);
+    color: var(--text-main);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -32,6 +58,17 @@
     font-family: var(--font-heading);
   }
 }
+
+/* BackTech.io Section Background Utility Classes */
+.bg-bg-page { background-color: var(--bg-page) !important; }
+.bg-bg-surface { background-color: var(--bg-surface) !important; }
+.bg-bg-alt { background-color: var(--bg-alt) !important; }
+.bg-bg-elevated { background-color: var(--bg-elevated) !important; }
+.border-border-color { border-color: var(--border-color) !important; }
+.text-text-main { color: var(--text-main) !important; }
+.text-text-heading { color: var(--text-heading) !important; }
+.text-text-muted { color: var(--text-muted) !important; }
+
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -104,30 +141,34 @@
 }
 
 /* =========================================================
-   LIGHT THEME SYSTEM (Comprehensive Site-Wide Inversion)
-   Guarantees pure white & crisp light gray backgrounds with
-   deep charcoal text, eliminating all dark-on-dark issues.
+   LIGHT THEME SYSTEM (Direct from BackTech.io)
+   --bg-page: #FDFDFD
+   --bg-surface: #FFFFFF
+   --bg-alt: #F4F5F7 (Distinct cool-gray alternating band)
+   --border-color: rgba(9, 9, 11, 0.08)
    ========================================================= */
 
 html.light,
 html.light body {
-  background-color: #F8F9FA !important;
-  color: #18181B !important;
+  background-color: #FDFDFD !important;
+  color: #3F3F46 !important;
 }
 
-/* 1. Page canvas sections -> #F8F9FA */
-html.light section,
-html.light main,
-html.light .bg-\[\#0A0A0B\],
-html.light .bg-\[\#08080A\],
-html.light .bg-\[\#070709\],
-html.light .bg-\[\#0D0D10\],
-html.light .bg-\[\#0B0B0E\],
-html.light .bg-\[\#09090C\],
-html.light .bg-\[\#06080F\],
-html.light .bg-\[\#0A0A0C\],
-html.light .bg-\[\#000000\] {
-  background-color: #F8F9FA !important;
+/* BackTech.io Light Mode Distinct Section Backgrounds */
+html.light .bg-bg-page {
+  background-color: #FDFDFD !important;
+}
+
+html.light .bg-bg-surface {
+  background-color: #FFFFFF !important;
+}
+
+html.light .bg-bg-alt {
+  background-color: #F4F5F7 !important;
+}
+
+html.light .border-border-color {
+  border-color: rgba(9, 9, 11, 0.08) !important;
 }
 
 /* 2. Neutralize dark gradients and texture overlays */

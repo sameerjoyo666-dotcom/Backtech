@@ -27,7 +27,7 @@ export default function HeroSection({ onOpenBooking, setSelectedRole }) {
   };
 
   return (
-    <section id="home" className="relative min-h-[92vh] pt-28 sm:pt-36 pb-16 sm:pb-24 flex items-center justify-center overflow-hidden bg-grain-texture">
+    <section id="home" className="relative min-h-[92vh] pt-28 sm:pt-36 pb-16 sm:pb-24 flex items-center justify-center overflow-hidden bg-bg-page">
       
       {/* Background Ambience & Reddish Orange Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[680px] lg:w-[850px] h-[350px] sm:h-[500px] bg-[#F84B1D]/8 rounded-full blur-[140px] pointer-events-none" />

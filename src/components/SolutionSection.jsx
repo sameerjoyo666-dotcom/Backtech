@@ -31,7 +31,7 @@ export default function SolutionSection({ onOpenBooking }) {
   ];
 
   return (
-    <section id="solution" className="py-20 sm:py-28 bg-[#08080A] text-white relative overflow-hidden">
+    <section id="solution" className="py-20 sm:py-28 bg-bg-surface relative overflow-hidden">
       
       {/* Background Ambience Texture */}
       <div className="absolute inset-0 bg-grain-texture opacity-50 pointer-events-none" />

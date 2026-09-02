@@ -37,7 +37,7 @@ export default function FooterSection({ onOpenBooking }) {
   };
 
   return (
-    <footer className="relative bg-[#000000] border-t border-zinc-800/80 pt-16 pb-10 overflow-hidden select-none w-full">
+    <footer className="relative bg-bg-surface border-t border-border-color pt-16 pb-10 overflow-hidden select-none w-full">
       
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         

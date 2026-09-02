@@ -31,7 +31,7 @@ export default function SecuritySection({ onOpenBooking }) {
   ];
 
   return (
-    <section id="security" className="py-20 sm:py-28 relative bg-[#09090C] border-t border-zinc-800/80 bg-grain-texture">
+    <section id="security" className="py-20 sm:py-28 relative bg-bg-surface border-y border-border-color">
       
       {/* Background radial highlight */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-[#F84B1D]/4 rounded-full blur-[140px] pointer-events-none" />

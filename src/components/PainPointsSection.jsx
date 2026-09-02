@@ -57,7 +57,7 @@ export default function PainPointsSection({ onOpenBooking }) {
   ];
 
   return (
-    <section id="pain-points" className="py-20 sm:py-28 bg-[#0A0A0B] text-white relative overflow-hidden">
+    <section id="pain-points" className="py-20 sm:py-28 bg-bg-alt border-y border-border-color text-white relative overflow-hidden">
       
       {/* Subtle Grid / Texture Background */}
       <div className="absolute inset-0 bg-grain-texture opacity-60 pointer-events-none" />
