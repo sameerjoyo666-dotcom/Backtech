@@ -5,29 +5,29 @@
     --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --color-brand-orange: #F84B1D;
-    --color-brand-dark: #06080F;
+    --color-brand-dark: #08080A;
 
-    /* Theme Tokens directly from Backtech.io (Dark Mode Default) */
-    --bg-page: #06080F;
-    --bg-surface: #0B0E17;
-    --bg-alt: #101423;
-    --bg-elevated: #151A2E;
-    --bg-card: #0B0E17;
+    /* Theme Tokens: Neutral Shades of Black (Zero Blue/Navy) */
+    --bg-page: #08080A;
+    --bg-surface: #0E0E12;
+    --bg-alt: #141418; /* Lighter shade of black for alternating sections */
+    --bg-elevated: #1A1A20;
+    --bg-card: #111115;
     --border-color: rgba(255, 255, 255, 0.08);
     --border-subtle: rgba(255, 255, 255, 0.04);
     --text-main: #D4D4D8;
     --text-heading: #FAFAFA;
     --text-muted: #A1A1AA;
 
-    /* Authentic BackTech.io Radial Mesh Gradient Colors */
-    --hero-mesh-1: rgba(248, 75, 29, 0.16);
-    --hero-mesh-2: rgba(99, 102, 241, 0.12);
-    --hero-mesh-3: rgba(6, 182, 212, 0.08);
+    /* Pure Brand Orange Ambient Glow (Zero Blue / Indigo / Cyan) */
+    --hero-mesh-1: rgba(248, 75, 29, 0.12);
+    --hero-mesh-2: rgba(248, 75, 29, 0.05);
+    --hero-mesh-3: transparent;
   }
 
   html.light {
-    /* Theme Tokens directly from Backtech.io (Light Mode) */
-    --bg-page: #FDFDFD;
+    /* Pure Clean White Theme from BackTech.io */
+    --bg-page: #FFFFFF;
     --bg-surface: #FFFFFF;
     --bg-alt: #F4F5F7;
     --bg-elevated: #FFFFFF;
@@ -38,9 +38,9 @@
     --text-heading: #09090B;
     --text-muted: #71717A;
 
-    --hero-mesh-1: rgba(248, 75, 29, 0.09);
-    --hero-mesh-2: rgba(99, 102, 241, 0.06);
-    --hero-mesh-3: rgba(6, 182, 212, 0.04);
+    --hero-mesh-1: rgba(248, 75, 29, 0.06);
+    --hero-mesh-2: rgba(248, 75, 29, 0.02);
+    --hero-mesh-3: transparent;
   }
 
   html {

@@ -65,11 +65,11 @@ export default function PricingPage() {
         {/* 2-Column Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch relative z-10">
           
-          {/* ================= LEFT CARD: PRICING CARD (Turns Orange in Light Mode) ================= */}
-          <div className="lg:col-span-5 rounded-3xl p-7 sm:p-9 bg-[#121216] text-white border border-[#F84B1D]/30 shadow-2xl flex flex-col justify-between relative overflow-hidden group pricing-plan-card transition-all duration-300">
+          {/* ================= LEFT CARD: ORANGE PRICING PLAN CARD ================= */}
+          <div className="lg:col-span-5 rounded-3xl p-7 sm:p-9 bg-[#F84B1D] text-white shadow-2xl shadow-[#F84B1D]/35 flex flex-col justify-between relative overflow-hidden group border border-[#F84B1D] transition-all duration-300">
             
             {/* Ambient Corner Glow */}
-            <div className="absolute top-0 right-0 w-48 h-48 bg-[#F84B1D]/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-48 h-48 bg-white/15 rounded-full blur-3xl pointer-events-none" />
 
             <div className="space-y-6 relative z-10">
               
@@ -81,14 +81,14 @@ export default function PricingPage() {
               </div>
 
               {/* Divider */}
-              <div className="border-b border-zinc-800/80 pricing-fine-print" />
+              <div className="border-b border-white/20" />
 
               {/* Flat Price Display */}
               <div className="flex items-baseline gap-2">
                 <span className="font-heading text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-white tracking-tight leading-none">
                   $1,800
                 </span>
-                <span className="text-zinc-400 font-medium text-sm sm:text-base opacity-90">
+                <span className="text-white/80 font-medium text-sm sm:text-base">
                   / per month
                 </span>
               </div>
@@ -106,8 +106,8 @@ export default function PricingPage() {
               {/* Feature Checklist */}
               <div className="space-y-3.5 pt-2">
                 {planFeatures.map((feat, idx) => (
-                  <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-zinc-300">
-                    <div className="w-5 h-5 rounded-full border-2 border-[#F84B1D] flex items-center justify-center flex-shrink-0 mt-0.5 text-[#F84B1D] pricing-check-icon">
+                  <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-white/95">
+                    <div className="w-5 h-5 rounded-full border-2 border-white flex items-center justify-center flex-shrink-0 mt-0.5 text-white">
                       <Check className="w-3 h-3 stroke-[3]" />
                     </div>
                     <span className="leading-snug pt-0.5">{feat}</span>
@@ -118,7 +118,7 @@ export default function PricingPage() {
             </div>
 
             {/* Bottom Fine Print */}
-            <div className="pt-6 mt-6 border-t border-zinc-800/80 text-[11px] text-zinc-400 text-center pricing-fine-print">
+            <div className="pt-6 mt-6 border-t border-white/20 text-[11px] text-white/80 text-center">
               Flat monthly rate after your matching period.
             </div>
 
